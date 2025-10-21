@@ -1,0 +1,182 @@
+<!-- 项目部分 -->
+<div grid-row="" grid-pad="1" grid-gutter="2" grid-responsive="" style="padding: 2rem;">
+  <!-- HEADER 标题 -->
+  <div grid-col="x9" grid-pad="1">
+    <b><a href="Header" rel="history" style="text-decoration: none;">Sissi Zheng (<i>郑泳诗</i>)</a></b>
+  </div>
+
+  <!-- 项目列表 -->
+  <div grid-col="x9" grid-pad="1">
+    <b>PROJECTS 2024-25</b><br><br>
+
+    <a href="Clinical-AR" rel="history">Bone Surgery MR Navigation System 
+      <small>-算法MR导航系统<br></small> 
+      &nbsp;</a><small><a href="Clinical-AR" rel="history">-骨穿刺手术</a> </small><br><br>
+      
+    <a href="CITIBOT" rel="history">CITIBOT 无人机语音交互 
+      <small>-指令交互优化</small><br></a><br>
+
+    <a href="EGG" rel="history">DreamSync 
+      <small>-EEG 生物数据蓝牙可穿戴</small><br></a><br>
+
+    <a href="LLM" rel="history">The Sugar Demon 
+      <small>- AI大语言模型嵌入式可穿戴</small></a><br>
+  </div>
+
+  <!-- 空白占位 -->
+  <div grid-col="x9" grid-pad="1">
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br>
+    <h1><span style="color: #000;">↓</span><br></h1>
+  </div>
+
+  <!-- About Me -->
+  <div grid-col="x9" grid-pad="1">
+    <a href="About-Me" rel="history"><b>ABOUT ME</b></a>
+  </div>
+</div>
+
+<!-- 黑色作品区 -->
+<div id="black-section" style="background-color: #000; color: #fff; padding: 80px 30px; min-height: 100vh; opacity: 0; transform: translateY(50px); transition: opacity 1s ease-out, transform 1s ease-out;">
+  <div style="width: 100%; margin: 10 auto;">
+    <!-- 标题 -->
+    <div class="section-title" style="text-align: center; margin-bottom: 60px; opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out 0.3s, transform 0.8s ease-out 0.3s;">
+      <br><br><br><br><br><br>SELECTED WORKS
+    </div><br><br>
+
+    <!-- 行1：2图 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 30px;">
+      <a href="Clinical-AR" rel="history" class="work-item" style="flex: 1 1 48%; text-decoration: none; opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out 0.5s;">
+        <div style="position: relative; background-color: #333; overflow: hidden; aspect-ratio: 21/9;">
+          {image 21}
+          <div class="hover-overlay">↗</div>
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 15px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+            <p style="color: #fff; margin: 0; font-size: 1rem;">Bone Surgery MR Navigation System</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="CITIBOT" rel="history" class="work-item" style="flex: 1 1 48%; text-decoration: none; opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out 0.5s;">
+        <div style="position: relative; background-color: #333; overflow: hidden; aspect-ratio: 21/9;">
+          {image 22}
+          <div class="hover-overlay">↗</div>
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 15px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+            <p style="color: #fff; margin: 0; font-size: 1rem;">CITIBOT 无人机语音交互</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- 行2：单图 -->
+    <div style="display: flex; gap: 30px; margin-bottom: 30px;">
+      <a href="EGG" rel="history" class="work-item" style="flex: 1; text-decoration: none; opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out 0.7s;">
+        <div style="position: relative; background-color: #333; overflow: hidden; aspect-ratio: 21/9;">
+          {image 20}
+          <div class="hover-overlay">↗</div>
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 15px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+            <p style="color: #fff; margin: 0; font-size: 1rem;">EEG Data Flow Wearable</p>
+          </div>
+        </div>
+      </a>
+      <a href="" rel="history" class="work-item active" style="flex: 1; text-decoration: none; opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out 0.7s;">
+        <div style="position: relative; background-color: #333; overflow: hidden; aspect-ratio: 21/9;">
+          {image 24}
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 15px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+            <p style="color: #fff; margin: 0; font-size: 1rem;"></p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- 样式 -->
+<style>
+  /* 确保图片100%填充 */
+  .work-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .work-item {
+      flex: 1 1 100% !important;
+      transform: translateY(20px) !important;
+    }
+
+    [style*="aspect-ratio: 21/9"] {
+      aspect-ratio: 3/2 !important;
+    }
+  }
+  /* 图片变黑白 + 弹出文字 */
+.work-item .hover-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 4.5rem;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.work-item:hover .hover-overlay {
+  opacity: 1;
+}
+
+.work-item:hover img {
+  filter: grayscale(100%);
+  transition: filter 0.4s ease;
+}
+
+/* 精准作用于主页顶部的四个项目链接，hover 时左到右渐变红橙色 */
+div[grid-row] > div[grid-col] > a[rel="history"]:hover {
+  background: linear-gradient(to right, #001adb, #000000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background 1.2s ease-in-out, -webkit-text-fill-color 1.2s ease-in-out;
+}
+
+
+</style>
+
+<!-- 动画脚本 -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  setTimeout(function () {
+    const blackSection = document.getElementById('black-section');
+    const sectionTitle = document.querySelector('.section-title');
+    const workItems = document.querySelectorAll('.work-item');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          blackSection.style.opacity = '1';
+          blackSection.style.transform = 'translateY(0)';
+          setTimeout(() => {
+            sectionTitle.style.opacity = '1';
+            sectionTitle.style.transform = 'translateY(0)';
+          }, 300);
+          workItems.forEach((item, i) => {
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+            }, 400 + i * 200);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    });
+
+    observer.observe(blackSection);
+  }, 500);
+});
+</script>

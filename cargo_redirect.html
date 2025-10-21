@@ -3,106 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=https://sissiii777.github.io/portfolio/">
-    <title>郑泳诗 Sissi Zheng - Portfolio</title>
+    <title>郑泳诗 Sissi Zheng - Loading...</title>
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
         }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: white;
+        html, body {
+            width: 100% !important;
+            height: 100% !important;
+            overflow: hidden !important;
+            background: #fff !important;
         }
-        
-        .container {
-            text-align: center;
-            padding: 2rem;
-            max-width: 600px;
+
+        .cube-container {
+            perspective: 1000px;
+            width: 105px;
+            height: 105px;
+            position: fixed !important;
+            z-index: 9999 !important;
         }
-        
-        .logo {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: pulse 2s ease-in-out infinite;
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 3s infinite linear;
         }
-        
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 300;
+
+        .cube-face {
+            position: absolute;
+            width: 105px;
+            height: 105px;
+            background: linear-gradient(135deg, #020dff, #000000);
+            box-shadow: 0 0 21px rgba(2, 13, 255, 0.5);
         }
-        
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            margin: 2rem auto;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        .link {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.8rem 1.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid white;
-            border-radius: 8px;
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .link:hover {
-            background: white;
-            color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+
+        .cube-face.front  { transform: rotateY(0deg) translateZ(52.5px); }
+        .cube-face.back   { transform: rotateY(180deg) translateZ(52.5px); }
+        .cube-face.right  { transform: rotateY(90deg) translateZ(52.5px); }
+        .cube-face.left   { transform: rotateY(-90deg) translateZ(52.5px); }
+        .cube-face.top    { transform: rotateX(90deg) translateZ(52.5px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(52.5px); }
+
+        @keyframes rotateCube {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">✨</div>
-        <h1>郑泳诗 Sissi Zheng</h1>
-        <p>正在跳转到我的作品集...</p>
-        <div class="spinner"></div>
-        <p style="font-size: 0.9rem; opacity: 0.7;">如果没有自动跳转，请点击下方链接</p>
-        <a href="https://sissiii777.github.io/portfolio/" class="link">进入作品集</a>
+    <div class="cube-container">
+        <div class="cube">
+            <div class="cube-face front"></div>
+            <div class="cube-face back"></div>
+            <div class="cube-face right"></div>
+            <div class="cube-face left"></div>
+            <div class="cube-face top"></div>
+            <div class="cube-face bottom"></div>
+        </div>
     </div>
-    
+
     <script>
-        // 备用跳转方案
-        setTimeout(function() {
-            window.location.href = 'https://sissiii777.github.io/portfolio/';
-        }, 100);
+        // 强制居中立方体
+        function centerCube() {
+            const cube = document.querySelector('.cube-container');
+            if (cube) {
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+                cube.style.left = (windowWidth / 2 - 52.5) + 'px';
+                cube.style.top = (windowHeight / 2 - 52.5) + 'px';
+            }
+        }
+        
+        // 页面加载时居中
+        window.addEventListener('load', centerCube);
+        // 窗口大小改变时重新居中
+        window.addEventListener('resize', centerCube);
+        // 立即执行一次
+        centerCube();
+        
+        // 检测是否在Cargo编辑器中
+        // 如果在iframe中，或URL包含编辑相关参数，就不跳转
+        function shouldRedirect() {
+            // 检测是否在iframe中（Cargo编辑器使用iframe）
+            if (window.self !== window.top) {
+                return false;
+            }
+            
+            // 检测URL是否包含编辑模式标识
+            const url = window.location.href.toLowerCase();
+            if (url.includes('edit') || 
+                url.includes('admin') || 
+                url.includes('preview') ||
+                url.includes('cargo.site/admin')) {
+                return false;
+            }
+            
+            // 检测是否有Cargo编辑器的特征
+            if (document.querySelector('.cargo-edit-mode') || 
+                document.body.classList.contains('editing') ||
+                document.documentElement.classList.contains('cargo-admin')) {
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // 只在应该跳转时才执行
+        if (shouldRedirect()) {
+            // 动态添加meta标签进行重定向
+            setTimeout(function() {
+                const meta = document.createElement('meta');
+                meta.httpEquiv = 'refresh';
+                meta.content = '0; url=https://sissiii777.github.io/portfolio/';
+                document.head.appendChild(meta);
+                
+                // JavaScript备用方案
+                setTimeout(function() {
+                    try {
+                        window.location.href = 'https://sissiii777.github.io/portfolio/';
+                    } catch(e) {
+                        console.log('Redirect prevented');
+                    }
+                }, 100);
+            }, 2000);
+        }
     </script>
 </body>
 </html>
-

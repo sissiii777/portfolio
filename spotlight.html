@@ -1,0 +1,2195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Bits Orb</title>
+    
+    <!-- 预加载关键图片 -->
+    <link rel="preload" as="image" href="Photo/Spotlight/main.png">
+    <link rel="preload" as="image" href="Photo/Spotlight/logo.png">
+    <link rel="preload" as="image" href="Photo/Spotlight/code.png">
+    <link rel="preload" as="image" href="Photo/Spotlight/challenge.jpg">
+    
+    <!-- 预加载首屏可见图片 -->
+    <link rel="preload" as="image" href="Photo/Spotlight/eye1.jpg">
+    <link rel="preload" as="image" href="Photo/Spotlight/eye2.jpg">
+    <link rel="preload" as="image" href="Photo/Spotlight/eye3.jpg">
+    <link rel="preload" as="image" href="Photo/Spotlight/sentence.png">
+    
+    <!-- 预加载重要内容图片 -->
+    <link rel="preload" as="image" href="Photo/Spotlight/strat.png">
+    <link rel="preload" as="image" href="Photo/Spotlight/tech_graph.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* 图片优化 */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            transition: opacity 0.3s ease;
+            image-rendering: optimizeQuality;
+            backface-visibility: hidden;
+        }
+
+        /* 懒加载占位符 */
+        img[loading="lazy"] {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        img[loading="lazy"].loaded {
+            opacity: 1;
+        }
+
+        /* 背景图片优化 */
+        .optimized-bg {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            will-change: transform;
+        }
+
+        /* 通用容器样式 */
+        .container-1200 {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .container-1000 {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .container-1600 {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 通用动画效果 */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .fade-in-up.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 通用标题样式 */
+        .section-title {
+            font-size: 4rem;
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            max-width: 1600px;
+            padding: 0 20px;
+            display: block;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.5s ease-out;
+        }
+
+        .section-title.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title.orange-gradient {
+            background: linear-gradient(135deg, 
+                #E9685E 0%, 
+                #F2AC3E 50%, 
+                #E9685E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title.dark-gradient {
+            background: linear-gradient(135deg, 
+                #1a1a1a 0%, 
+                #4d1a1a 25%, 
+                #2a1a1a 50%, 
+                #5d1a1a 75%, 
+                #3d1a1a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .landing-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #000000 url('Photo/Spotlight/main.png') center/cover no-repeat;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 1s ease-out;
+            z-index: 1;
+            will-change: transform, opacity;
+        }
+
+        .landing-container.scrolled {
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            width: calc(100% - 40px);
+            height: calc(100vh - 40px);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .landing-container.fade-out {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.99);
+        }
+
+        .navigation-bar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1000px;
+            height: 60px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            overflow: visible;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .navigation-bar:hover {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+
+        .navigation-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.1) 25%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                rgba(255, 255, 255, 0.1) 75%, 
+                transparent 100%);
+            animation: navbarFlow 8s ease-in-out infinite;
+        }
+
+        @keyframes navbarFlow {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translate(10px, -5px) scale(1.02);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(0, 0) scale(1.05);
+                opacity: 0.7;
+            }
+            75% {
+                transform: translate(-10px, 5px) scale(1.02);
+                opacity: 0.5;
+            }
+        }
+
+        .nav-name {
+            font-size: 1rem;
+            font-weight: 400;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            position: relative;
+            text-decoration: none !important;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav-item-with-dropdown {
+            position: relative;
+        }
+
+        .nav-trigger {
+            cursor: pointer;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            position: relative;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .plus-icon {
+            color: #FF6778;
+            font-weight: bold;
+            margin-right: 4px;
+            font-size: 1.1rem;
+        }
+
+        .works-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.5) 0%, 
+                rgba(255, 255, 255, 0.5) 50%, 
+                rgba(255, 255, 255, 0.5) 100%);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                0 4px 16px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            min-width: 250px;
+            z-index: 1001;
+        }
+
+        .works-dropdown::after {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: transparent;
+        }
+
+        .nav-item-with-dropdown:hover .works-dropdown,
+        .works-dropdown:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            margin-bottom: 4px;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(4px);
+        }
+
+        .dropdown-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .dropdown-number {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #FF6778;
+            min-width: 16px;
+        }
+
+        .dropdown-title {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: white;
+        }
+
+        .nav-link {
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            position: relative;
+            font-size: 1rem;
+            font-weight: 400;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #FF6778;
+            transform: translateY(-1px);
+        }
+
+        .nav-logo {
+            width: 70px;
+            height: 40px;
+            background-image: url('Photo/Spotlight/logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: 
+                drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))
+                drop-shadow(0 0 20px rgba(255, 255, 255, 0.2))
+                drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            position: relative;
+            z-index: 1;
+            opacity: 0.8;
+        }
+
+        .content {
+            position: relative;
+            z-index: 0;
+            min-height: 200vh;
+        }
+
+
+        .scroll-content {
+            padding: 100px 20px;
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .cards-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            gap: 28px;
+            padding: 56px 0;
+            justify-content: center;
+            margin-top: 100vh;
+            position: relative;
+            z-index: 2;
+            /* 视觉停留效果 */
+            scroll-snap-align: start;
+            scroll-margin-top: 100px;
+        }
+
+        /* 滚动减速区域 - 应用到cards-container */
+        .cards-container::before {
+            content: '';
+            position: absolute;
+            top: -50vh;
+            left: 0;
+            right: 0;
+            height: 50vh;
+            background: linear-gradient(to bottom, 
+                rgba(248, 249, 250, 0) 0%, 
+                rgba(248, 249, 250, 0.3) 50%, 
+                rgba(248, 249, 250, 1) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .cards-section-title {
+            position: absolute;
+            top: -60px;
+            left: 0;
+            font-size: 4rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, 
+                #E9685E 0%, 
+                #FFD677 50%, 
+                #EE0040 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.5s ease-out;
+        }
+
+        .cards-section-title.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        .cards-section-subtitle {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            font-size: 1rem;
+            font-weight: 400;
+            color: black;
+            text-align: right;
+            line-height: 1.4;
+            max-width: 300px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .bottom-cards-section-title {
+            font-size: 4rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, 
+                #1a1a1a 0%, 
+                #4d1a1a 25%, 
+                #2a1a1a 50%, 
+                #5d1a1a 75%, 
+                #3d1a1a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin: 580px auto 40px auto;
+            position: relative;
+            z-index: 10;
+            max-width: 1600px;
+            padding: 0 20px;
+            display: block;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.5s ease-out;
+        }
+
+        .bottom-cards-section-title.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bottom-cards-section-description {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #333;
+            text-align: center;
+            margin: 0 auto 30px auto;
+            position: relative;
+            z-index: 10;
+            max-width: 1000px;
+            padding: 0 20px;
+            line-height: 1.6;
+        }
+
+        .bottom-cards-section-description strong {
+            font-weight: 700;
+            background: linear-gradient(180deg, 
+                #8d2a1a 0%, 
+                #ad2a1a 15%, 
+                #8d2a1a 30%, 
+                #1a1a1a 60%, 
+                #1a1a1a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info-cards-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin: 60px auto;
+            max-width: 1000px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-card {
+            flex: 1;
+            max-width: 300px;
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .info-card.revealed {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1.5s ease-out;
+        }
+
+        .info-card-dark {
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.8) 0%, 
+                rgba(0, 0, 0, 0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-card-light {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.9) 0%, 
+                rgba(255, 255, 255, 0.95) 100%);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card-image {
+            margin-bottom: 20px;
+        }
+
+        .info-card-image img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .info-card-dark .info-card-image img {
+            width: 120px;
+            height: 120px;
+        }
+
+        .info-card-text {
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+
+        .info-card-dark .info-card-text {
+            color: white;
+        }
+
+        .info-card-light .info-card-text {
+            color: #333;
+        }
+
+        .info-card-connector {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                #1a1a1a 0%, 
+                #8d2a1a 30%, 
+                #ad2a1a 50%, 
+                #8d2a1a 70%, 
+                #1a1a1a 100%);
+            border-radius: 2px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(173, 42, 26, 0.6);
+            animation: connectorGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes connectorGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(173, 42, 26, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(173, 42, 26, 0.9);
+            }
+        }
+
+        .tech-insight-title {
+            font-size: 4rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, 
+                #1a1a1a 0%, 
+                #4d1a1a 25%, 
+                #2a1a1a 50%, 
+                #5d1a1a 75%, 
+                #3d1a1a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin: 220px auto 40px auto;
+            position: relative;
+            z-index: 10;
+            max-width: 1600px;
+            padding: 0 20px;
+            display: block;
+        }
+
+        .tech-insight-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tech-insight-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 50px;
+            gap: 20px;
+        }
+
+        .tech-insight-item:nth-child(1) {
+            justify-content: flex-start;
+            margin-left: -150px;
+        }
+
+        .tech-insight-item:nth-child(2) {
+            justify-content: flex-end;
+            margin-right: -200px;
+        }
+
+        .tech-insight-item:nth-child(3) {
+            justify-content: flex-start;
+            margin-left: -150px;
+        }
+
+        .tech-insight-label {
+            min-width: 120px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tech-insight-bubble {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.08) 0%, 
+                rgba(255, 255, 255, 0.12) 30%, 
+                rgba(255, 255, 255, 0.05) 70%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 8px 16px;
+            backdrop-filter: blur(15px);
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.5s ease-out;
+        }
+
+        .tech-insight-bubble.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tech-insight-bubble-text {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+        }
+
+        .tech-insight-description {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #333;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .eye-bubbles-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 20px;
+            margin: 60px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .eye-bubble {
+            width: 400px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.08) 0%, 
+                rgba(255, 255, 255, 0.12) 30%, 
+                rgba(255, 255, 255, 0.05) 70%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.5s ease-out;
+        }
+
+        .eye-bubble.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .eye-bubble-1 {
+            height: 360px;
+        }
+
+        .eye-bubble-2 {
+            height: 440px;
+        }
+
+        .eye-bubble-3 {
+            height: 320px;
+        }
+
+        .eye-bubble img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .eye-bubble-2 img {
+            filter: grayscale(100%);
+        }
+
+        .eye-bubbles-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, 
+                #333 0%, 
+                #8d2a1a 30%, 
+                #333 50%, 
+                #ad2a1a 70%, 
+                #333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: titleGradient 3s ease-in-out infinite;
+            text-align: center;
+            margin: 180px auto 0 auto;
+            position: relative;
+            z-index: 10;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+
+        .tech-stack-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, 
+                #333 0%, 
+                #8d2a1a 30%, 
+                #333 50%, 
+                #ad2a1a 70%, 
+                #333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: titleGradient 3s ease-in-out infinite;
+            text-align: center;
+            margin: 180px auto 0 auto;
+            position: relative;
+            z-index: 10;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+
+        .tech-graph-container {
+            display: flex;
+            justify-content: center;
+            margin: 40px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tech-graph-image {
+            width: 1200px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        @keyframes titleGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .sentence-image-container {
+            display: flex;
+            justify-content: center;
+            margin: 40px auto 0 auto;
+        }
+
+        .sentence-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.5s ease-out;
+        }
+
+        .sentence-image.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .info-modules-container {
+            display: flex;
+            gap: 40px;
+        }
+
+        .info-module {
+            flex: 1;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.6) 0%, 
+                rgba(0, 0, 0, 0.7) 30%, 
+                rgba(0, 0, 0, 0.8) 70%, 
+                rgba(0, 0, 0, 0.6) 100%),
+                url('Photo/Spotlight/card2.png');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+            height: 240px;
+        }
+
+        .info-module.revealed {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1.5s ease-out;
+        }
+
+        .info-module:nth-child(2) {
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.6) 0%, 
+                rgba(0, 0, 0, 0.7) 30%, 
+                rgba(0, 0, 0, 0.8) 70%, 
+                rgba(0, 0, 0, 0.6) 100%),
+                url('Photo/Spotlight/card3.png');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+        }
+
+        .info-module:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .info-module-label {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #FF6778;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .info-module-content {
+            font-size: 1rem;
+            font-weight: 400;
+            color: white;
+            line-height: 1.6;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .design-strategy-title {
+            font-size: 4rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, 
+                #1a1a1a 0%, 
+                #4d1a1a 25%, 
+                #2a1a1a 50%, 
+                #5d1a1a 75%, 
+                #3d1a1a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin: 260px auto 80px auto;
+            position: relative;
+            z-index: 10;
+            max-width: 1600px;
+            padding: 0 20px;
+            display: block;
+        }
+
+        .strategy-card-container {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .strategy-card {
+            width: 100%;
+            background: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .strategy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(
+                400px circle at 50% 50%,
+                rgba(255, 255, 255, 0.3),
+                rgba(255, 255, 255, 0.1) 30%,
+                transparent 60%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            border-radius: 16px;
+            z-index: 2;
+        }
+
+        .strategy-card:hover::before {
+            opacity: 1;
+        }
+
+        .strategy-card .spotlight-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(
+                300px circle at 50% 50%,
+                rgba(255, 107, 120, 0.8),
+                rgba(255, 107, 120, 0.4) 40%,
+                rgba(255, 107, 120, 0.2) 70%,
+                transparent 90%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            border-radius: 16px;
+            z-index: 2;
+            display: block;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .strategy-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 12px;
+            position: relative;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .interface-display-title {
+            font-size: 4rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, 
+                #1a1a1a 0%, 
+                #4d1a1a 25%, 
+                #2a1a1a 50%, 
+                #5d1a1a 75%, 
+                #3d1a1a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin: 160px auto 80px auto;
+            position: relative;
+            z-index: 10;
+            max-width: 1600px;
+            padding: 0 20px;
+            display: block;
+        }
+
+        .step1-container {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .step1-image {
+            width: 1200px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .step1-overlay {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1200px;
+            height: auto;
+            object-fit: contain;
+            z-index: 11;
+            opacity: 0;
+            transform: translateX(-50%) translateY(50px);
+            transition: all 1.5s ease-out;
+        }
+
+        .step1-overlay.revealed {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .step2-container {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .step2-image {
+            width: 1200px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .step2-overlay {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1200px;
+            height: auto;
+            object-fit: contain;
+            z-index: 11;
+            opacity: 0;
+            transform: translateX(-50%) translateY(50px);
+            transition: all 1.5s ease-out;
+        }
+
+        .step2-overlay.revealed {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .step3-container {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .step3-image {
+            width: 1200px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .step3-overlay {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1200px;
+            height: auto;
+            object-fit: contain;
+            z-index: 11;
+            opacity: 0;
+            transform: translateX(-50%) translateY(50px);
+            transition: all 1.5s ease-out;
+        }
+
+        .step3-overlay.revealed {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+
+        .card {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 
+                0 4px 16px rgba(0, 0, 0, 0.2),
+                0 2px 8px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+            padding: 32px 24px;
+            position: relative;
+            overflow: hidden;
+            width: 420px;
+            min-height: 260px;
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            will-change: transform;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.2) 30%, 
+                rgba(255, 255, 255, 0.4) 50%, 
+                rgba(255, 255, 255, 0.2) 70%, 
+                transparent 100%);
+            transition: left 0.6s ease-out;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                transparent 30%, 
+                transparent 70%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.25) 0%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                rgba(255, 255, 255, 0.2) 100%);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.3),
+                0 3px 10px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin: 0 0 2rem 0;
+            background: linear-gradient(135deg, 
+                #E9685E 0%, 
+                #F2AC3E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            position: relative;
+            text-align: center;
+            filter: 
+                drop-shadow(0 0 15px rgba(233, 104, 94, 0.4))
+                drop-shadow(0 0 30px rgba(233, 104, 94, 0.2))
+                drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .card-title::before {
+            content: attr(data-title);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.8) 0%, 
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 255, 255, 0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(1px);
+            z-index: -1;
+        }
+
+        .card-title::after {
+            content: attr(data-title);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.3) 0%, 
+                rgba(0, 0, 0, 0.1) 50%,
+                rgba(0, 0, 0, 0.2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(0.5px);
+            z-index: -2;
+        }
+
+        .card-content {
+            text-align: left;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .card-subtitle {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0;
+            color: black;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+            color: black;
+        }
+
+        .card-text-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .card-text strong {
+            font-weight: 700;
+            color: #EE0040;
+        }
+
+        /* 底部卡片层样式 */
+        .bottom-cards-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: row;
+            gap: 28px;
+            padding: 56px 0;
+            justify-content: center;
+            z-index: 1;
+            transform: translateY(0);
+            opacity: 0;
+            transition: transform 3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 1.5s ease-out;
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+
+        .bottom-cards-container.revealed {
+            transform: translateY(280px) !important;
+            opacity: 1 !important;
+            pointer-events: auto;
+        }
+
+        .bottom-card {
+            background: url('Photo/Spotlight/card.jpg');
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 32px 24px;
+            position: relative;
+            overflow: hidden;
+            width: 420px;
+            min-height: 260px;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .bottom-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.1) 30%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                rgba(255, 255, 255, 0.1) 70%, 
+                transparent 100%);
+            transition: left 0.6s ease-out;
+        }
+
+        .bottom-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.05) 0%, 
+                transparent 30%, 
+                transparent 70%, 
+                rgba(255, 255, 255, 0.02) 100%);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        .bottom-card:hover {
+            transform: translateY(-4px);
+            background: url('Photo/Spotlight/card.png');
+            background-size: cover;
+            background-position: center;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .bottom-card:hover::before {
+            left: 100%;
+        }
+
+        .bottom-card-content {
+            text-align: left;
+            color: #FF6778;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .bottom-card-subtitle {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0;
+            color: white;
+        }
+
+        .bottom-card-text-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .bottom-card-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+            color: white;
+        }
+
+        .bottom-card-text strong {
+            font-weight: 700;
+            color: white;
+        }
+
+        /* 气泡图标样式 */
+        .bubble-icon {
+            width: 80px;
+            height: 60px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 
+                0 4px 16px rgba(0, 0, 0, 0.2),
+                0 2px 8px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bubble-icon + .bottom-card-subtitle-text {
+            margin-bottom: 20px;
+        }
+
+        /* 调整最左边卡片的布局，避免space-between的影响 */
+        .bottom-card:first-child .bottom-card-content {
+            justify-content: flex-start;
+        }
+        
+        .bottom-card:first-child .bottom-card-subtitle-text {
+            margin-top: 20px;
+            margin-bottom: 0;
+        }
+
+        .bubble-icon::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .bubble-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            line-height: 1.2;
+            padding: 8px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .bottom-card-subtitle-text {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+        }
+
+
+        .orb-title {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            z-index: 10;
+            pointer-events: none;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .orb-title h1 {
+            font-size: 5rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem 0;
+            background: linear-gradient(135deg, 
+                #E0AEAA 0%, 
+                rgba(255, 255, 255, 0.8) 30%,
+                #E0AEAA 50%,
+                rgba(255, 255, 255, 0.6) 70%,
+                #E0AEAA 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            position: relative;
+            filter: 
+                drop-shadow(0 0 15px rgba(184, 168, 166, 0.3))
+                drop-shadow(0 0 30px rgba(184, 168, 166, 0.15))
+                drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            animation: flowingHighlight 4s ease-in-out infinite;
+        }
+
+        @keyframes flowingHighlight {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .orb-title h1::before {
+            content: 'OS搜索 眼动捕捉系统';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.6) 0%, 
+                rgba(255, 255, 255, 0.3) 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0.4) 70%,
+                rgba(255, 255, 255, 0.5) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(1px);
+            z-index: -1;
+        }
+
+        .orb-title h1::after {
+            content: 'OS搜索 眼动捕捉系统';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.15) 0%, 
+                rgba(0, 0, 0, 0.08) 50%,
+                rgba(0, 0, 0, 0.12) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(0.5px);
+            z-index: -2;
+        }
+
+        .glassy-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                0 4px 16px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .glassy-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.3) 30%, 
+                rgba(255, 255, 255, 0.6) 50%, 
+                rgba(255, 255, 255, 0.3) 70%, 
+                transparent 100%);
+            transition: left 0.6s ease-out;
+        }
+
+        .glassy-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.2) 0%, 
+                transparent 30%, 
+                transparent 70%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        .glassy-button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.25) 0%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                rgba(255, 255, 255, 0.2) 100%);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.5),
+                0 6px 20px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .glassy-button:hover::before {
+            left: 100%;
+        }
+
+        .glassy-button:active {
+            transform: translateY(0);
+            box-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation-bar">
+        <div class="nav-links">
+            <a href="index.html" class="nav-name">郑泳诗</a>
+            <div class="nav-item-with-dropdown">
+                <span class="nav-link nav-trigger"><span class="plus-icon">+</span>Works</span>
+                <div class="works-dropdown">
+                    <a href="AR.html" class="dropdown-item">
+                        <span class="dropdown-number">1</span>
+                        <span class="dropdown-title">手势识别导航系统</span>
+                    </a>
+                    <a href="CITIBOT.html" class="dropdown-item">
+                        <span class="dropdown-number">2</span>
+                        <span class="dropdown-title">CITIBOT机器人语音交互</span>
+                    </a>
+                    <a href="spotlight.html" class="dropdown-item">
+                        <span class="dropdown-number">3</span>
+                        <span class="dropdown-title">意图识别搜索交互</span>
+                    </a>
+                    <a href="LLM.html" class="dropdown-item">
+                        <span class="dropdown-number">4</span>
+                        <span class="dropdown-title">语言模型摄像交互</span>
+                    </a>
+                </div>
+            </div>
+            <a href="About-Me" class="nav-link">About Me</a>
+            <a href="Contact" class="nav-link">Contact</a>
+        </div>
+    </div>
+    
+    <div class="landing-container" id="landingContainer">
+        <div class="orb-title">
+            <h1>OS搜索 眼动捕捉系统</h1>
+            <div class="glassy-button">快捷搜索中的AI意图识别</div>
+        </div>
+    </div>
+    
+    <div class="content">
+        
+        <div class="scroll-content">
+            <div class="cards-container">
+                <div class="cards-section-subtitle">手机用户为什么要用快捷搜索模块？</div>
+                <div class="cards-section-title">快捷搜索：动机与痛点</div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-subtitle"><span style="color: #EE0040;">启动类</span>意图</h3>
+                        <div class="card-text-container">
+                            <p class="card-text">为了节省时间，直接在<strong>搜索应用名称</strong>以打开应用，而不在主屏幕上翻找图标。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-subtitle"><span style="color: #EE0040;">信息查找</span>意图</h3>
+                        <div class="card-text-container">
+                            <p class="card-text">利用搜索来<strong>查找信息或答案</strong>。用户在此情境下将搜索代替繁琐的浏览器任务步骤</p>
+                            <p class="card-text">在手机的各个位置精确找到联系人、文件、笔记等分散信息。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-subtitle"><span style="color: #EE0040;">快捷操作</span>意图</h3>
+                        <div class="card-text-container">
+                            <p class="card-text">直接通过搜索框<strong>执行某项操作</strong>或<strong>到达应用内特定功能</strong>，免去APP内的操作步骤。</p>
+                </div>
+            </div>
+                </div>
+                
+                <!-- 底部卡片层 -->
+                <div class="bottom-cards-container">
+                    <div class="bottom-card">
+                        <div class="bottom-card-content">
+                            <div class="bubble-icon">
+                                <div class="bubble-text">搜索结果非预期</div>
+                            </div>
+                            <p class="bottom-card-subtitle-text">需要翻很下面才有预期的结果</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bottom-card">
+                        <div class="bottom-card-content">
+                            <div class="bubble-icon">
+                                <div class="bubble-text">意图识别错误</div>
+                            </div>
+                            <p class="bottom-card-subtitle-text">搜索方向、推荐错误</p>
+                            
+                            <div class="bubble-icon">
+                                <div class="bubble-text">信息颗粒度太大</div>
+                            </div>
+                            <p class="bottom-card-subtitle-text">难给出有效信息，缺乏广度和深入度</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bottom-card">
+                        <div class="bottom-card-content">
+                            <div class="bubble-icon">
+                                <div class="bubble-text">索引覆盖率差</div>
+                            </div>
+                            <p class="bottom-card-subtitle-text">找不到，导致重新回到APP去找</p>
+                            
+                            <div class="bubble-icon">
+                                <div class="bubble-text">结果杂乱</div>
+                            </div>
+                            <p class="bottom-card-subtitle-text">排序复杂，用户过滤成本高</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-cards-section-title">界面优化目标</div>
+        <div class="bottom-cards-section-description">
+            解决 搜索模块 中<strong>结果信息杂乱和排序优先级不准</strong>的问题，用<strong>轻量技术媒介</strong>提升权重结果类别的优先可见性，减少因意图识别偏差带来的操作落空。
+        </div>
+        
+        <div class="info-cards-container">
+            <div class="info-card info-card-dark">
+                <div class="info-card-image">
+                    <img src="Photo/Spotlight/code.png" alt="技术背景" loading="eager">
+                </div>
+                <div class="info-card-text">我的技术优势与系统性思考</div>
+            </div>
+            
+            <div class="info-card-connector"></div>
+            
+            <div class="info-card info-card-light">
+                <div class="info-card-image">
+                    <img src="Photo/Spotlight/challenge.jpg" alt="现状挑战" loading="eager">
+                </div>
+                <div class="info-card-text">OS搜索模块现状</div>
+            </div>
+        </div>
+        
+        <div class="tech-insight-title">前沿技术洞悉</div>
+        
+        <div class="tech-insight-content">
+            <div class="tech-insight-item">
+                <div class="tech-insight-label">
+                    <div class="tech-insight-bubble">
+                        <div class="tech-insight-bubble-text">交互方案</div>
+                    </div>
+                </div>
+                <div class="tech-insight-description">重新排列 /记忆化 用户对结果类别的权重</div>
+            </div>
+            
+            <div class="tech-insight-item">
+                <div class="tech-insight-label">
+                    <div class="tech-insight-bubble">
+                        <div class="tech-insight-bubble-text">问题点</div>
+                    </div>
+                </div>
+                <div class="tech-insight-description">结果排序有时不符合预期，例如：用户本想打开某 App 却发现网页结果或相册结果在最前列，需要下翻很下面才找到目标。</div>
+            </div>
+            
+            <div class="tech-insight-item">
+                <div class="tech-insight-label">
+                    <div class="tech-insight-bubble">
+                        <div class="tech-insight-bubble-text">操作方式</div>
+                    </div>
+                </div>
+                <div class="tech-insight-description">利用硬件或身体识别来快速调整搜索结果的类别优先级。</div>
+            </div>
+        </div>
+        
+        <div class="eye-bubbles-container">
+            <div class="eye-bubble eye-bubble-1">
+                <img src="Photo/Spotlight/eye1.jpg" alt="Eye 1" loading="eager">
+            </div>
+            <div class="eye-bubble eye-bubble-2">
+                <img src="Photo/Spotlight/eye2.jpg" alt="Eye 2" loading="eager">
+            </div>
+            <div class="eye-bubble eye-bubble-3">
+                <img src="Photo/Spotlight/eye3.jpg" alt="Eye 3" loading="eager">
+            </div>
+        </div>
+        
+        <div class="eye-bubbles-title">眼动捕捉机制</div>
+        
+        <div class="sentence-image-container container-1200">
+            <img src="Photo/Spotlight/sentence.png" alt="Sentence" class="sentence-image" loading="lazy">
+        </div>
+        
+        <div class="info-modules-container container-1200">
+            <div class="info-module">
+                <div class="info-module-label">意图识别（隐形）</div>
+                <div class="info-module-content">前置摄像头追踪用户眼动，判断其注视的类别区域（如 App、网页块）超过阈值（例如 2s）。</div>
+            </div>
+            
+            <div class="info-module">
+                <div class="info-module-label">用户确认动作（显式）</div>
+                <div class="info-module-content">超过阈值后，用户轻触屏幕任意区域确认意图，系统才进行搜索结构排序调整。</div>
+            </div>
+        </div>
+        
+        <div class="tech-stack-title">技术栈结构图</div>
+        
+        <div class="tech-graph-container">
+            <img src="Photo/Spotlight/tech_graph.png" alt="技术栈结构图" class="tech-graph-image" loading="lazy">
+        </div>
+        
+        <div class="design-strategy-title">设计策略</div>
+        
+        <div class="strategy-card-container">
+            <div class="strategy-card">
+                <img src="Photo/Spotlight/strat.png" alt="Strategy" class="strategy-image" loading="lazy">
+                <div class="spotlight-overlay"></div>
+            </div>
+        </div>
+        
+        <div class="interface-display-title">界面展示</div>
+        
+        <div class="step1-container">
+            <img src="Photo/Spotlight/step1.png" alt="Step 1" class="step1-image" loading="lazy">
+            <img src="Photo/Spotlight/step1-1.png" alt="Step 1-1" class="step1-overlay" loading="lazy">
+        </div>
+        
+        <div class="step2-container">
+            <img src="Photo/Spotlight/step2.png" alt="Step 2" class="step2-image" loading="lazy">
+            <img src="Photo/Spotlight/step2-1.png" alt="Step 2-1" class="step2-overlay" loading="lazy">
+        </div>
+        
+        <div class="step3-container">
+            <img src="Photo/Spotlight/step3.png" alt="Step 3" class="step3-image" loading="lazy">
+            <img src="Photo/Spotlight/step3-1.png" alt="Step 3-1" class="step3-overlay" loading="lazy">
+        </div>
+        </div>
+    </div>
+
+    <script>
+        // 图片优化和懒加载
+        document.addEventListener('DOMContentLoaded', function() {
+            // 预加载关键图片
+            const criticalImages = [
+                'Photo/Spotlight/main.png',
+                'Photo/Spotlight/logo.png',
+                'Photo/Spotlight/code.png',
+                'Photo/Spotlight/challenge.jpg'
+            ];
+
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+
+            // 懒加载实现
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.classList.add('loaded');
+                            observer.unobserve(img);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.01
+                });
+
+                lazyImages.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            } else {
+                // 不支持IntersectionObserver的浏览器回退
+                lazyImages.forEach(img => {
+                    img.classList.add('loaded');
+                });
+            }
+
+            // 优化背景图片
+            const backgroundElements = document.querySelectorAll('[style*="background"]');
+            backgroundElements.forEach(el => {
+                el.classList.add('optimized-bg');
+            });
+
+            // 预加载步骤图片
+            const stepImages = document.querySelectorAll('.step1-image, .step2-image, .step3-image, .step1-overlay, .step2-overlay, .step3-overlay');
+            const stepImageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        // 强制预加载图片
+                        if (img.complete === false) {
+                            img.src = img.src;
+                        }
+                        stepImageObserver.unobserve(img);
+                    }
+                });
+            }, { rootMargin: '200px 0px' });
+
+            stepImages.forEach(img => {
+                stepImageObserver.observe(img);
+            });
+        });
+
+        // 滚动监听 - 动态背景效果
+        const landingContainer = document.getElementById('landingContainer');
+        const bottomCardsContainer = document.querySelector('.bottom-cards-container');
+        let ticking = false;
+        let lastScrollY = 0;
+        const scrollThreshold = 5; // 滚动阈值，减少不必要的计算
+
+        function updateBackground() {
+            const scrollY = window.scrollY;
+            
+            // 如果滚动距离变化很小，跳过更新
+            if (Math.abs(scrollY - lastScrollY) < scrollThreshold) {
+                ticking = false;
+                return;
+            }
+            lastScrollY = scrollY;
+            
+            const cardThreshold = 50; // 变成卡片的滚动阈值
+            const fadeThreshold = 200; // 开始淡出的滚动阈值
+            const bottomCardsThreshold = 100; // 底部卡片开始出现的滚动阈值
+            const windowHeight = window.innerHeight;
+            
+            if (scrollY > cardThreshold) {
+                landingContainer.classList.add('scrolled');
+            } else {
+                landingContainer.classList.remove('scrolled');
+            }
+            
+            // 淡出效果
+            if (scrollY > fadeThreshold) {
+                landingContainer.classList.add('fade-out');
+            } else {
+                landingContainer.classList.remove('fade-out');
+            }
+            
+            // 底部卡片动画效果
+            if (scrollY > bottomCardsThreshold) {
+                if (bottomCardsContainer) {
+                    bottomCardsContainer.classList.add('revealed');
+                }
+            } else {
+                if (bottomCardsContainer) {
+                    bottomCardsContainer.classList.remove('revealed');
+                }
+            }
+            
+            // 步骤叠加图片动画效果 - 优化性能
+            const stepOverlays = [
+                { element: document.querySelector('.step1-overlay'), revealed: false },
+                { element: document.querySelector('.step2-overlay'), revealed: false },
+                { element: document.querySelector('.step3-overlay'), revealed: false }
+            ];
+            
+            stepOverlays.forEach(step => {
+                if (step.element && !step.revealed) {
+                    const rect = step.element.getBoundingClientRect();
+                    if (rect.top < windowHeight * 1.2) {
+                        step.element.classList.add('revealed');
+                        step.revealed = true;
+                    }
+                }
+            });
+            
+            // 大标题动画效果
+            const cardsSectionTitle = document.querySelector('.cards-section-title');
+            const bottomCardsSectionTitle = document.querySelector('.bottom-cards-section-title');
+            const techInsightTitle = document.querySelector('.tech-insight-title');
+            const designStrategyTitle = document.querySelector('.design-strategy-title');
+            const interfaceDisplayTitle = document.querySelector('.interface-display-title');
+            
+            if (cardsSectionTitle) {
+                const rect = cardsSectionTitle.getBoundingClientRect();
+                if (rect.top < windowHeight * 0.8) {
+                    cardsSectionTitle.classList.add('revealed');
+                }
+            }
+            
+            if (bottomCardsSectionTitle) {
+                const rect = bottomCardsSectionTitle.getBoundingClientRect();
+                if (rect.top < windowHeight * 0.8) {
+                    bottomCardsSectionTitle.classList.add('revealed');
+                }
+            }
+            
+            if (techInsightTitle) {
+                const rect = techInsightTitle.getBoundingClientRect();
+                if (rect.top < windowHeight * 0.8) {
+                    techInsightTitle.classList.add('revealed');
+                }
+            }
+            
+            if (designStrategyTitle) {
+                const rect = designStrategyTitle.getBoundingClientRect();
+                if (rect.top < windowHeight * 0.8) {
+                    designStrategyTitle.classList.add('revealed');
+                }
+            }
+            
+            if (interfaceDisplayTitle) {
+                const rect = interfaceDisplayTitle.getBoundingClientRect();
+                if (rect.top < windowHeight * 0.8) {
+                    interfaceDisplayTitle.classList.add('revealed');
+                }
+            }
+            
+            // sentence图片动画效果
+            const sentenceImage = document.querySelector('.sentence-image');
+            if (sentenceImage) {
+                const rect = sentenceImage.getBoundingClientRect();
+                if (rect.top < windowHeight * 0.8) {
+                    sentenceImage.classList.add('revealed');
+                }
+            }
+            
+            // info模块动画效果
+            const infoModules = document.querySelectorAll('.info-module');
+            infoModules.forEach(module => {
+                const rect = module.getBoundingClientRect();
+                if (rect.top < windowHeight * 0.8) {
+                    module.classList.add('revealed');
+                }
+            });
+            
+            // eye气泡动画效果
+            const eyeBubbles = document.querySelectorAll('.eye-bubble');
+            eyeBubbles.forEach(bubble => {
+                const rect = bubble.getBoundingClientRect();
+                if (rect.top < windowHeight * 0.8) {
+                    bubble.classList.add('revealed');
+                }
+            });
+            
+            // info卡片动画效果（界面优化目标下的两个黑白气泡）
+            const infoCards = document.querySelectorAll('.info-card');
+            infoCards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < windowHeight * 0.8) {
+                    card.classList.add('revealed');
+                }
+            });
+            
+            // tech-insight气泡动画效果（前沿技术洞悉下面的3个小白底文字气泡）
+            const techInsightBubbles = document.querySelectorAll('.tech-insight-bubble');
+            techInsightBubbles.forEach(bubble => {
+                const rect = bubble.getBoundingClientRect();
+                if (rect.top < windowHeight * 0.8) {
+                    bubble.classList.add('revealed');
+                }
+            });
+            
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateBackground);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick);
+
+
+        // Strategy card spotlight effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const strategyCard = document.querySelector('.strategy-card');
+            const spotlightOverlay = document.querySelector('.spotlight-overlay');
+            
+            
+            if (strategyCard && spotlightOverlay) {
+                // 使用事件委托，监听整个document的鼠标移动
+                document.addEventListener('mousemove', function(e) {
+                    // 检查鼠标是否在strategy-card内
+                    const rect = strategyCard.getBoundingClientRect();
+                    const x = e.clientX;
+                    const y = e.clientY;
+                    
+                    if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+                        const relativeX = x - rect.left;
+                        const relativeY = y - rect.top;
+                        const percentageX = (relativeX / rect.width) * 100;
+                        const percentageY = (relativeY / rect.height) * 100;
+                        
+                        // 更新覆盖层的背景位置
+                        const newBackground = `radial-gradient(300px circle at ${percentageX}% ${percentageY}%, rgba(255, 107, 120, 0.6), rgba(255, 107, 120, 0.3) 40%, rgba(255, 107, 120, 0.1) 70%, transparent 90%)`;
+                        spotlightOverlay.style.background = newBackground;
+                        spotlightOverlay.style.opacity = '1';
+                    } else {
+                        // 鼠标不在卡片内时隐藏覆盖层
+                        spotlightOverlay.style.opacity = '0';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

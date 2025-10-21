@@ -8,13 +8,36 @@
     <link rel="stylesheet" href="portfolio.css">
 </head>
 <body>
+<!-- Custom Cursor -->
+<div class="custom-cursor"></div>
+
 <!-- Oslo-style Portfolio -->
 <div class="oslo-container">
   <!-- Navigation -->
   <nav class="oslo-nav">
     <div class="nav-links">
-      <span class="nav-name">郑泳诗</span>
-      <a href="Work" class="nav-link">Work</a>
+      <a href="index.html" class="nav-name">郑泳诗</a>
+      <div class="nav-item-with-dropdown">
+        <span class="nav-link nav-trigger"><span class="plus-icon">+</span>Works</span>
+        <div class="works-dropdown">
+          <a href="AR.html" class="dropdown-item">
+            <span class="dropdown-number">1</span>
+            <span class="dropdown-title">手势识别导航系统</span>
+          </a>
+          <a href="CITIBOT.html" class="dropdown-item">
+            <span class="dropdown-number">2</span>
+            <span class="dropdown-title">CITIBOT机器人语音交互</span>
+          </a>
+          <a href="spotlight.html" class="dropdown-item">
+            <span class="dropdown-number">3</span>
+            <span class="dropdown-title">OS搜索-眼动捕捉系统</span>
+          </a>
+          <a href="LLM.html" class="dropdown-item">
+            <span class="dropdown-number">4</span>
+            <span class="dropdown-title">语言模型摄像交互 </span>
+          </a>
+        </div>
+      </div>
       <a href="About-Me" class="nav-link">About Me</a>
       <a href="Contact" class="nav-link">Contact</a>
   </div>
@@ -24,7 +47,7 @@
   <main class="oslo-main">
     <!-- Hero Section -->
     <section class="hero-section">
-      <p class="hero-intro">我擅长用前沿技术提升用户体验，作品主要围绕<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据化设计 · AI驱动设计 · 软硬件交互系统 等。</p>
+      <p class="hero-intro">我擅长用前沿技术提升用户体验，作品主要围绕<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="gradient-text">数据化设计 · AI驱动设计 · 软硬件交互系统</span> 等。</p>
       <h1 class="hero-title" id="decrypted-text">Sissi's Works</h1>
       <div class="hero-footer">
         <p class="hero-subtitle"></p>
@@ -71,7 +94,7 @@
             <div class="bubble-content">
               <img src="bubble1.png" alt="AI" class="bubble-icon">
               <div class="bubble-text">
-                <span class="bubble-tag">人工智能业</span>
+                <span class="bubble-tag">技术 & 开发</span>
               </div>
             </div>
           </div>
@@ -81,7 +104,7 @@
             <div class="bubble-content">
               <img src="bubble2.png" alt="Manufacturing" class="bubble-icon">
               <div class="bubble-text">
-                <span class="bubble-tag">智能制造业</span>
+                <span class="bubble-tag">设计</span>
               </div>
             </div>
           </div>
@@ -103,7 +126,7 @@
       <div class="projects-grid">
         <!-- Project 1 -->
         <div class="project-card">
-          <a href="Clinical-AR" rel="history" class="project-link">
+          <a href="AR.html" rel="history" class="project-link">
             <div class="project-border-beam"></div>
             <div class="project-image">
               <img src="project1.png" alt="">
@@ -115,7 +138,7 @@
 
         <!-- Project 2 -->
         <div class="project-card">
-          <a href="CITIBOT" rel="history" class="project-link">
+          <a href="CITIBOT.html" rel="history" class="project-link">
             <div class="project-border-beam"></div>
             <div class="project-image">
               <img src="project2.png" alt="">
@@ -127,13 +150,13 @@
 
         <!-- Project 3 -->
         <div class="project-card">
-          <a href="EGG" rel="history" class="project-link">
+          <a href="spotlight.html" rel="history" class="project-link">
             <div class="project-border-beam"></div>
             <div class="project-image">
               <img src="project3.png" alt="">
             </div>
-            <div class="project-title-top">生物数据可穿戴</div>
-            <div class="project-title">DreamSync</div>
+            <div class="project-title-top">意图识别搜索交互</div>
+            <div class="project-title">Eye Tracking</div>
           </a>
         </div>
 
@@ -142,7 +165,7 @@
           <a href="LLM" rel="history" class="project-link">
             <div class="project-border-beam"></div>
             <div class="project-image">
-              <img src="{image 24}" alt="">
+              <img src="project4.png" alt="">
             </div>
             <div class="project-title-top">语言模型摄像交互</div>
             <div class="project-title">Sugar Demon</div>
@@ -161,6 +184,42 @@
 <!-- Oslo Animation Script -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  // Custom Cursor
+  const cursor = document.querySelector('.custom-cursor');
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+  
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.classList.add('active');
+  });
+  
+  document.addEventListener('mouseleave', () => {
+    cursor.classList.remove('active');
+  });
+  
+  // Smooth cursor animation
+  function animateCursor() {
+    const speed = 0.2;
+    cursorX += (mouseX - cursorX) * speed;
+    cursorY += (mouseY - cursorY) * speed;
+    cursor.style.left = cursorX + 'px';
+    cursor.style.top = cursorY + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+  
+  // Hover effect on interactive elements
+  const hoverElements = document.querySelectorAll('a, button, .project-card, .phone-card, img');
+  hoverElements.forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+
+  // Smooth scroll animation for project cards
   // Smooth scroll animation for project cards
   const projectCards = document.querySelectorAll('.project-card');
 
@@ -304,8 +363,20 @@ document.addEventListener('DOMContentLoaded', function () {
     
     if (!phoneCard || !projectSection || projectCards.length === 0) return;
     
+    // Add smooth transition to phone card
+    phoneCard.style.transition = 'transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease-out';
+    
     let lastScrollTime = 0;
     const throttleDelay = 16; // ~60fps
+    
+    // Easing function for smoother animation
+    function easeOutCubic(x) {
+      return 1 - Math.pow(1 - x, 3);
+    }
+    
+    function easeInOutCubic(x) {
+      return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+    }
     
     // Throttled scroll handler for better performance
     function handleScroll() {
@@ -336,14 +407,20 @@ document.addEventListener('DOMContentLoaded', function () {
         const deltaX = targetX - initialX;
         const deltaY = targetY - initialY;
         
-        // Apply movement with scroll progress
-        const moveX = deltaX * scrollProgress;
-        const moveY = deltaY * scrollProgress;
+        // Apply easing to movement for smoother transition
+        const easedProgress = easeInOutCubic(scrollProgress);
+        const moveX = deltaX * easedProgress;
+        const moveY = deltaY * easedProgress;
         
-        // Rotation progress
-        const rotateZ = scrollProgress * 90; // 0 to 90 degrees
-        const rotateY = -25 + scrollProgress * 25; // -25 to 0
-        const rotateX = 8 - scrollProgress * 8; // 8 to 0
+        // Rotation progress with smoother easing
+        // Rotate earlier for more natural transition
+        const rotationEase = easeOutCubic(Math.min(scrollProgress * 1.5, 1));
+        const rotateZ = rotationEase * 90; // 0 to 90 degrees
+        const rotateY = -25 + rotationEase * 25; // -25 to 0
+        const rotateX = 8 - rotationEase * 8; // 8 to 0
+        
+        // Scale down smoothly during transition
+        const scale = 1 - (scrollProgress * 0.1); // Scale from 1 to 0.9
         
         phoneCard.style.transform = `
           translate(-50%, -50%)
@@ -352,25 +429,29 @@ document.addEventListener('DOMContentLoaded', function () {
           rotateY(${rotateY}deg) 
           rotateX(${rotateX}deg) 
           rotateZ(${rotateZ}deg)
+          scale(${scale})
         `;
         
         phoneCard.style.left = '50%';
         phoneCard.style.top = '50%';
         
-        // Transition opacity
-        if (scrollProgress > 0.7) {
-          const fadeProgress = (scrollProgress - 0.7) / 0.3;
-          phoneCard.style.opacity = 1 - fadeProgress;
+        // Transition opacity - start fading earlier at 0.6 instead of 0.7
+        if (scrollProgress > 0.6) {
+          const fadeProgress = (scrollProgress - 0.6) / 0.4; // Smoother fade over longer distance
+          const easedFade = easeInOutCubic(fadeProgress);
+          phoneCard.style.opacity = 1 - easedFade;
           
           // Show first project card at the same position
-          firstProjectCard.style.opacity = fadeProgress;
-          firstProjectCard.style.transform = 'translateY(0)';
+          firstProjectCard.style.opacity = easedFade;
+          firstProjectCard.style.transform = 'translateY(0) scale(1)';
           
-          // Show other project cards below
+          // Show other project cards below with stagger effect
           projectCards.forEach((card, index) => {
             if (index > 0) {
-              card.style.opacity = fadeProgress;
-              card.style.transform = `translateY(${(1 - fadeProgress) * 30}px)`;
+              const staggerDelay = Math.min(fadeProgress + (index * 0.1), 1);
+              const staggerEase = easeOutCubic(Math.max(0, (fadeProgress - index * 0.05)));
+              card.style.opacity = staggerEase;
+              card.style.transform = `translateY(${(1 - staggerEase) * 30}px)`;
             }
           });
         } else {
@@ -386,7 +467,7 @@ document.addEventListener('DOMContentLoaded', function () {
         phoneCard.style.opacity = '1';
         phoneCard.style.left = '50%';
         phoneCard.style.top = '50%';
-        phoneCard.style.transform = 'translate(-50%, -50%) perspective(1000px) rotateY(-25deg) rotateX(8deg)';
+        phoneCard.style.transform = 'translate(-50%, -50%) perspective(1000px) rotateY(-25deg) rotateX(8deg) scale(1)';
         projectCards.forEach(card => {
           card.style.opacity = '0';
           card.style.transform = 'translateY(50px)';
@@ -405,7 +486,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Initial state - hide project cards
     projectCards.forEach(card => {
-      card.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.320, 1)';
+      card.style.transition = 'all 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
       card.style.opacity = '0';
       card.style.transform = 'translateY(50px)';
     });
@@ -479,20 +560,20 @@ document.addEventListener('DOMContentLoaded', function () {
           const angle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI);
           const normalizedAngle = (angle + 360) % 360;
           
-          // Create gradient that follows mouse with gradient fade effect
-          borderBeam.style.background = `conic-gradient(from ${normalizedAngle - 50}deg at 50% 50%,
+          // Create gradient that follows mouse with softer gradient fade effect
+          borderBeam.style.background = `conic-gradient(from ${normalizedAngle - 30}deg at 50% 50%,
             transparent 0deg,
-            rgba(2, 13, 255, 0) 15deg,
-            rgba(50, 80, 255, 0.5) 30deg,
-            rgba(100, 150, 255, 0.7) 35deg,
-            rgba(150, 180, 255, 0.9) 38deg,
-            rgba(2, 13, 255, 1) 40deg,
-            rgba(2, 13, 255, 1) 60deg,
-            rgba(150, 180, 255, 0.9) 62deg,
-            rgba(100, 150, 255, 0.7) 65deg,
-            rgba(50, 80, 255, 0.5) 70deg,
-            rgba(2, 13, 255, 0) 85deg,
-            transparent 100deg,
+            rgba(2, 13, 255, 0) 10deg,
+            rgba(50, 80, 255, 0.2) 20deg,
+            rgba(100, 150, 255, 0.4) 28deg,
+            rgba(150, 180, 255, 0.6) 32deg,
+            rgba(2, 13, 255, 0.8) 38deg,
+            rgba(2, 13, 255, 0.8) 42deg,
+            rgba(150, 180, 255, 0.6) 48deg,
+            rgba(100, 150, 255, 0.4) 52deg,
+            rgba(50, 80, 255, 0.2) 60deg,
+            rgba(2, 13, 255, 0) 70deg,
+            transparent 80deg,
             transparent 360deg)`;
         });
         
