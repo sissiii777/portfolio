@@ -918,6 +918,7 @@ body.mobile .audio-player {
   font-size: 1rem !important;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
   transition: all 0.3s ease;
+  mix-blend-mode: difference;
 }
 
 .nav-name:hover {
@@ -932,6 +933,7 @@ body.mobile .audio-player {
   font-size: 1rem !important;
   transition: all 0.3s ease;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  mix-blend-mode: difference;
 }
 
 .nav-link:hover {
@@ -947,6 +949,7 @@ body.mobile .audio-player {
 
 .nav-trigger {
   cursor: pointer;
+  mix-blend-mode: difference;
 }
 
 .plus-icon {
@@ -1007,6 +1010,7 @@ body.mobile .audio-player {
   transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: transparent !important;
   margin-bottom: 4px;
+  mix-blend-mode: difference;
 }
 
 .dropdown-item:last-child {
@@ -1030,6 +1034,7 @@ body.mobile .audio-player {
   border-radius: 4px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  mix-blend-mode: difference;
 }
 
 .dropdown-title {
@@ -1038,6 +1043,7 @@ body.mobile .audio-player {
   color: #000;
   white-space: nowrap;
   transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  mix-blend-mode: difference;
 }
 
 .dropdown-item:hover .dropdown-title {
