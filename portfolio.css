@@ -949,7 +949,6 @@ body.mobile .audio-player {
 
 .nav-trigger {
   cursor: pointer;
-  mix-blend-mode: difference;
 }
 
 .plus-icon {
@@ -1010,7 +1009,6 @@ body.mobile .audio-player {
   transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: transparent !important;
   margin-bottom: 4px;
-  mix-blend-mode: difference;
 }
 
 .dropdown-item:last-child {
@@ -1018,7 +1016,7 @@ body.mobile .audio-player {
 }
 
 .dropdown-item:hover {
-  background: transparent !important;
+  background: rgba(2, 13, 255, 0.1) !important;
 }
 
 .dropdown-number {
@@ -1034,7 +1032,6 @@ body.mobile .audio-player {
   border-radius: 4px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  mix-blend-mode: difference;
 }
 
 .dropdown-title {
@@ -1043,7 +1040,6 @@ body.mobile .audio-player {
   color: #000;
   white-space: nowrap;
   transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  mix-blend-mode: difference;
 }
 
 .dropdown-item:hover .dropdown-title {
