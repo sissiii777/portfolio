@@ -26,11 +26,11 @@
           </a>
           <a href="CITIBOT.html" class="dropdown-item">
             <span class="dropdown-number">2</span>
-            <span class="dropdown-title">机器人语音交互</span>
+            <span class="dropdown-title">CITIBOT机器人语音交互</span>
           </a>
-          <a href="EEG.html" class="dropdown-item">
+          <a href="spotlight.html" class="dropdown-item">
             <span class="dropdown-number">3</span>
-            <span class="dropdown-title">生物数据可穿戴</span>
+            <span class="dropdown-title">OS搜索-眼动捕捉系统</span>
           </a>
           <a href="LLM.html" class="dropdown-item">
             <span class="dropdown-number">4</span>
@@ -38,10 +38,25 @@
           </a>
         </div>
       </div>
-      <a href="About-Me" class="nav-link">About Me</a>
+      <a href="AboutMe.html" class="nav-link">About Me</a>
       <a href="Contact" class="nav-link">Contact</a>
     </div>
   </nav>
+
+  <!-- Landing Container -->
+  <div class="landing-container" id="landingContainer">
+    <div class="orb-title">
+      <!-- <h1>Clinical AR</h1> -->
+      <div class="glassy-button" id="scrollToMain">
+        手势识别导航系统
+        <div class="scroll-indicator">
+          <div class="scroll-dot"></div>
+          <div class="scroll-dot"></div>
+          <div class="scroll-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Main Content -->
   <main class="oslo-main">
@@ -208,6 +223,11 @@
 </div>
 
 <style>
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
 /* White Cursor for AR page (will invert to black on white bg) */
 .custom-cursor {
   background: #fff !important;
@@ -230,7 +250,139 @@
   background: rgba(241, 49, 0, 0.1) !important;
 }
 
+/* Landing Container Styles */
+.landing-container {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    width: calc(100% - 80px);
+    height: calc(100vh - 80px);
+    background: #000000 url('Photo/AR/main.png') center/cover no-repeat;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 1s ease-out;
+    z-index: 999;
+    will-change: transform, opacity;
+    border-radius: 24px;
+}
+
+.landing-container.scrolled {
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    width: calc(100% - 40px);
+    height: calc(100vh - 40px);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.landing-container.fade-out {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.99);
+}
+
+.orb-title {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.orb-title h1 {
+    font-size: 5rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: #000000;
+    position: relative;
+}
+
+
+
+
+.glassy-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.2) 0%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        rgba(255, 255, 255, 0.15) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 30px;
+    position: relative;
+    gap: 4px;
+}
+
+.scroll-dot {
+    width: 4px;
+    height: 4px;
+    background: #FE3300;
+    border-radius: 50%;
+    animation: scrollDown 1.5s infinite ease-in-out;
+}
+
+.scroll-dot:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.scroll-dot:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.scroll-dot:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes scrollDown {
+    0% {
+        transform: translateY(-8px);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(8px);
+        opacity: 0;
+    }
+}
+
+
 /* Project-specific styles */
+.oslo-main {
+  position: relative;
+  z-index: 1;
+  margin-top: 100vh;
+}
+
 .project-hero-section {
   padding: 6rem 1rem 4rem;
   max-width: 1400px;
@@ -761,6 +913,84 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('load', checkScrollFadeIn);
   // Initial check
   checkScrollFadeIn();
+
+  // 滚动监听 - 动态背景效果
+  const landingContainer = document.getElementById('landingContainer');
+  let ticking = false;
+  let lastScrollY = 0;
+  const scrollThreshold = 5; // 滚动阈值，减少不必要的计算
+
+  function updateBackground() {
+    const scrollY = window.scrollY;
+    
+    // 如果滚动距离变化很小，跳过更新
+    if (Math.abs(scrollY - lastScrollY) < scrollThreshold) {
+      return;
+    }
+    
+    lastScrollY = scrollY;
+    
+    const cardThreshold = 50; // 卡片开始出现的滚动阈值
+    const fadeThreshold = 200; // 开始淡出的滚动阈值
+    const windowHeight = window.innerHeight;
+    
+    if (scrollY > cardThreshold) {
+      landingContainer.classList.add('scrolled');
+    } else {
+      landingContainer.classList.remove('scrolled');
+    }
+    
+    // 淡出效果
+    if (scrollY > fadeThreshold) {
+      landingContainer.classList.add('fade-out');
+    } else {
+      landingContainer.classList.remove('fade-out');
+    }
+  }
+
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateBackground);
+      ticking = true;
+    }
+  }
+
+  function handleScroll() {
+    requestTick();
+    ticking = false;
+  }
+
+  // 添加滚动监听器
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+  // Glassy button click to scroll to main content
+  const scrollToMainButton = document.getElementById('scrollToMain');
+  if (scrollToMainButton) {
+    scrollToMainButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      const mainContent = document.querySelector('.oslo-main');
+      if (mainContent) {
+        // 添加平滑滚动样式
+        document.documentElement.style.scrollBehavior = 'smooth';
+        document.body.style.scrollBehavior = 'smooth';
+        
+        // 计算目标位置
+        const targetPosition = mainContent.offsetTop - 20; // 留20px间距
+        
+        // 平滑滚动到目标位置
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+        
+        // 滚动完成后恢复默认行为
+        setTimeout(() => {
+          document.documentElement.style.scrollBehavior = 'auto';
+          document.body.style.scrollBehavior = 'auto';
+        }, 1000);
+      }
+    });
+  }
 });
 </script>
 </body>
