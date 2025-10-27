@@ -45,6 +45,9 @@
 
   <!-- Landing Container -->
   <div class="landing-container" id="landingContainer">
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner"></div>
+    </div>
     <div class="orb-title">
       <!-- <h1>SD15智驾清扫机器人</h1> -->
       <div class="glassy-button" id="scrollToMain">
@@ -127,10 +130,51 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: #000000 url('Photo/CITIBOT/CITIBOT1.png') center/cover no-repeat;
+    background: #000000;
     transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 1s ease-out;
     z-index: 999;
     will-change: transform, opacity;
+    overflow: hidden;
+}
+
+.landing-container.loaded {
+    background-image: url('Photo/CITIBOT/CITIBOT1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: opacity 0.5s ease-out;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid #F13100;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .landing-container.scrolled {
@@ -459,6 +503,28 @@ body {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Image preloading for landing container
+  const landingContainerElement = document.getElementById('landingContainer');
+  const loadingOverlay = document.getElementById('loadingOverlay');
+  const mainImageUrl = 'Photo/CITIBOT/CITIBOT1.png';
+  
+  // Preload the main image
+  const img = new Image();
+  img.onload = function() {
+    // Image loaded successfully
+    landingContainerElement.classList.add('loaded');
+    setTimeout(() => {
+      loadingOverlay.classList.add('hidden');
+    }, 300); // Small delay for smooth transition
+  };
+  img.onerror = function() {
+    // Image failed to load, hide loading overlay anyway
+    setTimeout(() => {
+      loadingOverlay.classList.add('hidden');
+    }, 1000);
+  };
+  img.src = mainImageUrl;
+
   // Custom Cursor
   const cursor = document.querySelector('.custom-cursor');
   let mouseX = 0;
