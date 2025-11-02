@@ -30,7 +30,7 @@
           </a>
           <a href="spotlight.html" class="dropdown-item">
             <span class="dropdown-number">3</span>
-            <span class="dropdown-title">OS搜索-眼动捕捉系统</span>
+            <span class="dropdown-title">OS系统-眼动捕捉系统</span>
           </a>
           <a href="LLM.html" class="dropdown-item">
             <span class="dropdown-number">4</span>
@@ -46,7 +46,11 @@
   <!-- Landing Container -->
   <div class="landing-container" id="landingContainer">
     <div class="loading-overlay" id="loadingOverlay">
-      <div class="loading-spinner"></div>
+      <div class="scroll-indicator">
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+      </div>
     </div>
     <div class="orb-title">
       <!-- <h1>SD15智驾清扫机器人</h1> -->
@@ -163,19 +167,6 @@ body {
     pointer-events: none;
 }
 
-.loading-spinner {
-    width: 40px;
-    height: 40px;
-    border: 3px solid rgba(255, 255, 255, 0.1);
-    border-top: 3px solid #F13100;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
 
 .landing-container.scrolled {
     top: 20px;

@@ -30,7 +30,7 @@
           </a>
           <a href="spotlight.html" class="dropdown-item">
             <span class="dropdown-number">3</span>
-            <span class="dropdown-title">OS搜索-眼动捕捉系统</span>
+            <span class="dropdown-title">OS系统-眼动捕捉系统</span>
           </a>
           <a href="LLM.html" class="dropdown-item">
             <span class="dropdown-number">4</span>
@@ -89,6 +89,9 @@
        </div>
     </section>
 
+    <!-- 底部空白区域 -->
+    <div class="bottom-spacer"></div>
+
   </main>
 </div>
 
@@ -125,31 +128,35 @@ html {
 body {
   background: #000000 !important;
   color: #fff;
+  margin: 0;
+  padding: 0;
 }
 
 .oslo-container {
   background: #000000 !important;
+  min-height: 100vh;
 }
 
-/* Title Section Styles */
-.title-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem 0 2rem 0;
+/* 确保主内容区域有足够的高度 */
+.oslo-main {
+  min-height: 200vh;
+  position: relative;
+}
+
+/* 底部空白区域 */
+.bottom-spacer {
+  height: 150vh;
   width: 100%;
 }
+
+/* Title Section Styles - 被fixed定位覆盖 */
 
 /* Cards Section Styles */
 
 .about-details {
-  display: flex;
-  gap: 2rem;
-  padding: 2rem 0;
-  justify-content: center;
-  align-items: stretch;
-  width: 1000px;
-  margin: 0 auto;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
 }
 
 .detail-item {
@@ -220,6 +227,7 @@ body {
   overflow: hidden;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 0;
 }
 
 
@@ -250,15 +258,34 @@ body {
   left: 0;
   width: 480px;
   height: 100%;
-  margin-left: 2rem;
-  transform: translateY(30px) scale(0.95);
-  z-index: 1;
+  transform: translateY(20px) scale(0.98);
+  z-index: 3;
   opacity: 0;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   border-radius: 12px;
-  position: relative;
   background: transparent;
   overflow: visible;
+  cursor: pointer;
+}
+
+/* 叠加卡片边框效果 */
+.stacked-card-1::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(45deg, 
+    #000000 0%,
+    #1a1a2e 25%,
+    #16213e 50%,
+    #0f3460 75%,
+    #020dff 100%);
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -2;
 }
 
 .stacked-card-2 {
@@ -267,45 +294,64 @@ body {
   left: 0;
   width: 480px;
   height: 100%;
-  margin-left: 4rem;
-  transform: translateY(30px) scale(0.9);
-  z-index: 2;
+  transform: translateY(40px) scale(0.96);
+  z-index: 4;
   opacity: 0;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   border-radius: 12px;
-  position: relative;
   background: transparent;
   overflow: visible;
+  cursor: pointer;
+}
+
+/* 叠加卡片边框效果 */
+.stacked-card-2::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(45deg, 
+    #000000 0%,
+    #1a1a2e 25%,
+    #16213e 50%,
+    #0f3460 75%,
+    #020dff 100%);
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -2;
 }
 
 /* 叠加卡片动画类 */
 .stacked-card-1.animate-in {
   opacity: 1;
-  transform: translateY(0) scale(0.95);
+  transform: translateY(8px) scale(0.98);
 }
 
 .stacked-card-2.animate-in {
   opacity: 1;
-  transform: translateY(0) scale(0.9);
+  transform: translateY(16px) scale(0.96);
 }
 
 /* 叠加卡片hover效果 - 只显示边框，不放大 */
 .stacked-card-1:hover::after {
-  opacity: 1;
+  opacity: 0.8;
 }
 
 .stacked-card-2:hover::after {
-  opacity: 1;
+  opacity: 0.8;
 }
 
 /* 覆盖叠加卡片的hover放大效果 */
 .stacked-card-1:hover {
-  transform: translateY(0) scale(0.95) !important;
+  transform: translateY(8px) scale(0.98) !important;
   box-shadow: none !important;
 }
 
 .stacked-card-2:hover {
-  transform: translateY(0) scale(0.9) !important;
+  transform: translateY(16px) scale(0.96) !important;
   box-shadow: none !important;
 }
 
@@ -436,6 +482,70 @@ body {
 }
 
 
+/* 固定导航栏 */
+.oslo-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  padding: 1rem 0;
+}
+
+/* 固定标题区域 */
+.title-section {
+  position: fixed;
+  top: 150px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 固定左侧卡片 */
+.left-cards {
+  position: fixed;
+  left: calc(50% - 500px);
+  top: 280px;
+  z-index: 200;
+}
+
+
+/* 照片卡片保持滚动响应 */
+.right-card.detail-item-main {
+  position: fixed;
+  right: calc(50% - 500px);
+  top: 280px;
+  z-index: 250;
+}
+
+/* Navigation text colors - override for AboutMe page */
+.nav-name {
+  color: #fff !important;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.plus-icon {
+  color: #020dff !important;
+}
+
+.dropdown-number {
+  color: #fff !important;
+}
+
+.dropdown-title {
+  color: #fff !important;
+}
+
 /* Navigation hover colors */
 .nav-name:hover {
   color: #020dff !important;
@@ -550,31 +660,37 @@ document.addEventListener('DOMContentLoaded', function() {
 // 叠加卡片滚动动画
 document.addEventListener('DOMContentLoaded', function() {
   function checkStackedCardsAnimation() {
-    const rightCard = document.querySelector('.right-card.detail-item-main');
     const stackedCard1 = document.querySelector('.stacked-card-1');
     const stackedCard2 = document.querySelector('.stacked-card-2');
     
-    if (!rightCard || !stackedCard1 || !stackedCard2) return;
+    if (!stackedCard1 || !stackedCard2) return;
     
-    const rightCardRect = rightCard.getBoundingClientRect();
+    // 获取滚动位置
+    const scrollY = window.scrollY;
+    const documentHeight = document.documentElement.scrollHeight;
     const windowHeight = window.innerHeight;
     
-    // 当右边卡片进入视口时，开始显示叠加卡片
-    const rightCardInView = rightCardRect.top < windowHeight * 0.8;
+    // 计算滚动进度 (0到1)
+    const scrollProgress = Math.min(1, scrollY / (documentHeight - windowHeight));
     
-    if (rightCardInView) {
-      // 第一张叠加卡片立即显示
-      if (!stackedCard1.classList.contains('animate-in')) {
-        stackedCard1.classList.add('animate-in');
-      }
-      
-      // 第二张叠加卡片延迟显示
-      setTimeout(() => {
-        if (!stackedCard2.classList.contains('animate-in')) {
-          stackedCard2.classList.add('animate-in');
-        }
-      }, 500);
+    // 第一张叠加卡片在滚动进度 15% 时开始显示
+    if (scrollProgress > 0.15 && !stackedCard1.classList.contains('animate-in')) {
+      stackedCard1.classList.add('animate-in');
     }
+    
+    // 第二张叠加卡片在滚动进度 40% 时开始显示
+    if (scrollProgress > 0.40 && !stackedCard2.classList.contains('animate-in')) {
+      stackedCard2.classList.add('animate-in');
+    }
+    
+    // 如果滚动回到顶部，重置动画
+    if (scrollProgress < 0.1) {
+      stackedCard1.classList.remove('animate-in');
+      stackedCard2.classList.remove('animate-in');
+    }
+    
+    // 添加调试信息 (可选)
+    // console.log('Scroll Progress:', (scrollProgress * 100).toFixed(1) + '%');
   }
 
   // 运行滚动动画

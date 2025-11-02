@@ -1384,19 +1384,23 @@ body.mobile .audio-player {
   width: 324px;
   height: 648px;
   background: #000;
-  border-radius: 9px !important;
+  border-radius: 40px !important;
   overflow: visible;
   cursor: pointer;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
   transform-style: preserve-3d;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
 }
 
 /* Spectra Noise Effect */
 .phone-spectra-noise {
   position: absolute;
   inset: 0;
-  border-radius: 9px;
+  border-radius: 40px;
   background: 
     radial-gradient(circle at 20% 80%, rgba(20, 40, 180, 0.35) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(20, 40, 180, 0.45) 0%, transparent 50%),
@@ -1411,7 +1415,7 @@ body.mobile .audio-player {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 9px;
+  border-radius: 40px;
   background: transparent;
   pointer-events: none;
 }
@@ -1420,7 +1424,7 @@ body.mobile .audio-player {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 9px;
+  border-radius: 40px;
   background: 
     radial-gradient(ellipse at 50% 50%, transparent 20%, rgba(20, 40, 180, 0.2) 80%);
   animation: warp-pulse 12s ease-in-out infinite;
@@ -1461,7 +1465,7 @@ body.mobile .audio-player {
 .phone-card-inner {
   position: absolute;
   inset: 0;
-  border-radius: 9px;
+  border-radius: 40px;
   overflow: hidden;
   pointer-events: none;
 }
@@ -1479,7 +1483,7 @@ body.mobile .audio-player {
     rgba(0, 10, 128, 0.3) 30%,
     rgba(0, 20, 196, 0.1) 60%,
     transparent 100%);
-  border-radius: 0 0 9px 9px;
+  border-radius: 0 0 40px 40px;
   pointer-events: none;
   z-index: 1;
   transition: all 0.6s ease;
@@ -1542,7 +1546,7 @@ body.mobile .audio-player {
 .phone-border-beam {
   position: absolute;
   inset: -2.4px;
-  border-radius: 11.4px;
+  border-radius: 42.4px;
   padding: 4.2px;
   background: conic-gradient(from 0deg at 50% 50%, transparent, transparent);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -1604,7 +1608,7 @@ body.mobile .audio-player {
     rgba(255,255,255,0.05) 0%, 
     rgba(255,255,255,0) 40%, 
     rgba(0,0,0,0.2) 100%);
-  border-radius: 9px;
+  border-radius: 40px;
   pointer-events: none;
   transition: all 0.6s ease;
   z-index: 2;
@@ -1620,7 +1624,7 @@ body.mobile .audio-player {
   background: linear-gradient(145deg, 
     rgba(255,255,255,0.1) 0%, 
     rgba(255,255,255,0) 50%);
-  border-radius: 7px;
+  border-radius: 38px;
   pointer-events: none;
   opacity: 0.3;
   transition: all 0.6s ease;
@@ -1628,8 +1632,8 @@ body.mobile .audio-player {
 }
 
 .phone-card:hover {
-  background: #020dff;
-  box-shadow: 0 30px 100px rgba(2, 13, 255, 0.6);
+  background-image: url('phonecard_bg.png');
+  box-shadow: none;
   transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-15px) scale(1.05);
 }
 
@@ -1807,133 +1811,45 @@ body.mobile .audio-player {
 .tech-bubble {
   position: absolute;
   border-radius: 12px;
-  padding: 12px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.tech-bubble img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 /* White Bubble */
 .white-bubble {
   top: -15px;
-  right: 5px;
-  width: 104px;
-  height: 138px;
-  background: 
-    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 255, 0.95) 50%),
-    radial-gradient(circle at 70% 70%, rgba(250, 250, 255, 0.9) 0%, transparent 60%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 
-    inset 0 2px 8px rgba(255, 255, 255, 0.3),
-    0 16px 40px rgba(0, 0, 0, 0.25),
-    0 32px 80px rgba(0, 0, 0, 0.18);
+  right: -45px;
+  width: 156px;
+  height: 207px;
   z-index: 15;
   transition-delay: 0.4s;
   transform: translateZ(30px) translateY(-8px);
 }
 
-.white-bubble .bubble-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  height: 100%;
-}
-
-.white-bubble .bubble-tag {
-  color: #000;
-  font-weight: 300;
-  font-size: 12px;
-}
-
-.white-bubble .bubble-icon {
-  filter: none;
-}
-
 /* Black Bubble */
 .black-bubble {
-  top: 50px;
-  right: -80px;
-  width: 104px;
-  height: 138px;
-  background: 
-    radial-gradient(circle at 30% 30%, rgba(50, 50, 50, 0.9) 0%, rgba(0, 0, 0, 0.85) 50%),
-    radial-gradient(circle at 70% 70%, rgba(30, 30, 30, 0.8) 0%, transparent 60%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 
-    inset 0 2px 8px rgba(255, 255, 255, 0.05),
-    0 4px 12px rgba(0, 0, 0, 0.3);
+  top: 90px;
+  right: -140px;
+  width: 156px;
+  height: 207px;
   z-index: 1;
   transition-delay: 0.6s;
 }
 
-.black-bubble .bubble-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  height: 100%;
-}
-
-.black-bubble .bubble-tag {
-  color: white;
-  font-weight: 300;
-  font-size: 12px;
-}
-
-.bubble-icon {
-  width: 83px;
-  height: 83px;
-  object-fit: contain;
-  display: block;
-}
-
-.bubble-icon svg {
-  color: white;
-}
-
-.bubble-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bubble-tag {
-  font-size: 12px;
-  white-space: nowrap;
-  letter-spacing: 0.3px;
-}
-
-.bubble-glow {
-  position: absolute;
-  inset: -20px;
-  background: radial-gradient(circle, rgba(2, 13, 255, 0.3) 0%, transparent 70%);
-  opacity: 0.5;
-  z-index: -1;
-  animation: glow-pulse 2s ease-in-out infinite;
-}
 
 @keyframes pulse {
   0%, 100% {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
-  }
-}
-
-@keyframes glow-pulse {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
     transform: scale(1.1);
   }
 }
