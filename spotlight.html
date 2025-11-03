@@ -1755,6 +1755,8 @@
     </div>
     
     <div class="landing-container" id="landingContainer">
+        <!-- Hidden preload image for faster loading -->
+        <img src="Photo/Spotlight/main.png" alt="" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; z-index: -1;" loading="eager" fetchpriority="high">
         <div class="loading-overlay" id="loadingOverlay">
             <div class="scroll-indicator">
                 <div class="scroll-dot"></div>
@@ -1969,22 +1971,60 @@
             const loadingOverlay = document.getElementById('loadingOverlay');
             const mainImageUrl = 'Photo/Spotlight/main.png';
             
-            // Preload the main image
-            const img = new Image();
-            img.onload = function() {
-                // Image loaded successfully
+            // Check if image is already loaded (from hidden img tag or link preload)
+            const hiddenImg = landingContainerElement.querySelector('img[src*="main.png"]');
+            let imageLoaded = false;
+            
+            // Function to show loaded state
+            function showLoadedState() {
+                if (imageLoaded) return;
+                imageLoaded = true;
                 landingContainerElement.classList.add('loaded');
                 setTimeout(() => {
                     loadingOverlay.classList.add('hidden');
                 }, 300); // Small delay for smooth transition
-            };
-            img.onerror = function() {
-                // Image failed to load, hide loading overlay anyway
-                setTimeout(() => {
-                    loadingOverlay.classList.add('hidden');
-                }, 1000);
-            };
-            img.src = mainImageUrl;
+            }
+            
+            // Check if hidden image is already loaded
+            if (hiddenImg && hiddenImg.complete && hiddenImg.naturalHeight !== 0) {
+                showLoadedState();
+            } else {
+                // Use fetch API for faster preloading (parallel with browser preload)
+                fetch(mainImageUrl, { method: 'HEAD', cache: 'force-cache' })
+                    .then(() => {
+                        // Also use Image object as fallback to ensure full load
+                        const img = new Image();
+                        img.onload = showLoadedState;
+                        img.onerror = function() {
+                            // Image failed to load, hide loading overlay anyway
+                            setTimeout(() => {
+                                loadingOverlay.classList.add('hidden');
+                            }, 1000);
+                        };
+                        img.src = mainImageUrl;
+                    })
+                    .catch(() => {
+                        // Fallback to Image object if fetch fails
+                        const img = new Image();
+                        img.onload = showLoadedState;
+                        img.onerror = function() {
+                            setTimeout(() => {
+                                loadingOverlay.classList.add('hidden');
+                            }, 1000);
+                        };
+                        img.src = mainImageUrl;
+                    });
+                
+                // Also listen to hidden image load event as backup
+                if (hiddenImg) {
+                    hiddenImg.addEventListener('load', showLoadedState);
+                    hiddenImg.addEventListener('error', function() {
+                        setTimeout(() => {
+                            loadingOverlay.classList.add('hidden');
+                        }, 1000);
+                    });
+                }
+            }
 
             // 预加载其他关键图片
             const criticalImages = [

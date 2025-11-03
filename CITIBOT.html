@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="AI语音交互 - CITIBOT">
     <title>智能机器人语音交互 - 郑泳诗 Sissi Zheng</title>
+    <!-- Preload landing orb main image for faster loading -->
+    <link rel="preload" as="image" href="Photo/CITIBOT/CITIBOT1.png" fetchpriority="high">
     <link rel="stylesheet" href="portfolio.css">
 </head>
 <body>
@@ -45,6 +47,8 @@
 
   <!-- Landing Container -->
   <div class="landing-container" id="landingContainer">
+    <!-- Hidden preload image for faster loading -->
+    <img src="Photo/CITIBOT/CITIBOT1.png" alt="" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; z-index: -1;" loading="eager" fetchpriority="high">
     <div class="loading-overlay" id="loadingOverlay">
       <div class="scroll-indicator">
         <div class="scroll-dot"></div>
@@ -499,22 +503,61 @@ document.addEventListener('DOMContentLoaded', function() {
   const loadingOverlay = document.getElementById('loadingOverlay');
   const mainImageUrl = 'Photo/CITIBOT/CITIBOT1.png';
   
-  // Preload the main image
-  const img = new Image();
-  img.onload = function() {
-    // Image loaded successfully
+  // Check if image is already loaded (from hidden img tag or link preload)
+  const hiddenImg = landingContainerElement.querySelector('img');
+  let imageLoaded = false;
+  
+  // Function to show loaded state
+  function showLoadedState() {
+    if (imageLoaded) return;
+    imageLoaded = true;
     landingContainerElement.classList.add('loaded');
     setTimeout(() => {
       loadingOverlay.classList.add('hidden');
     }, 300); // Small delay for smooth transition
-  };
-  img.onerror = function() {
-    // Image failed to load, hide loading overlay anyway
-    setTimeout(() => {
-      loadingOverlay.classList.add('hidden');
-    }, 1000);
-  };
-  img.src = mainImageUrl;
+  }
+  
+  // Check if hidden image is already loaded
+  if (hiddenImg && hiddenImg.complete && hiddenImg.naturalHeight !== 0) {
+    showLoadedState();
+    return;
+  }
+  
+  // Use fetch API for faster preloading (parallel with browser preload)
+  fetch(mainImageUrl, { method: 'HEAD', cache: 'force-cache' })
+    .then(() => {
+      // Also use Image object as fallback to ensure full load
+      const img = new Image();
+      img.onload = showLoadedState;
+      img.onerror = function() {
+        // Image failed to load, hide loading overlay anyway
+        setTimeout(() => {
+          loadingOverlay.classList.add('hidden');
+        }, 1000);
+      };
+      img.src = mainImageUrl;
+    })
+    .catch(() => {
+      // Fallback to Image object if fetch fails
+      const img = new Image();
+      img.onload = showLoadedState;
+      img.onerror = function() {
+        setTimeout(() => {
+          loadingOverlay.classList.add('hidden');
+        }, 1000);
+      };
+      img.src = mainImageUrl;
+    });
+  
+  // Also listen to hidden image load event as backup
+  if (hiddenImg) {
+    hiddenImg.addEventListener('load', showLoadedState);
+    hiddenImg.addEventListener('error', function() {
+      setTimeout(() => {
+        loadingOverlay.classList.add('hidden');
+      }, 1000);
+    });
+  }
 
   // Custom Cursor
   const cursor = document.querySelector('.custom-cursor');

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="语言模型摄像交互 - LLM Camera Interaction">
     <title>语言模型摄像交互 - 郑泳诗 Sissi Zheng</title>
+    <!-- Preload landing orb main image for faster loading -->
+    <link rel="preload" as="image" href="Photo/LLM/main.png" fetchpriority="high">
     <link rel="stylesheet" href="portfolio.css">
 </head>
 <body>
@@ -45,6 +47,8 @@
 
   <!-- Landing Container -->
   <div class="landing-container" id="landingContainer">
+    <!-- Hidden preload image for faster loading -->
+    <img src="Photo/LLM/main.png" alt="" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; z-index: -1;" loading="eager" fetchpriority="high">
     <div class="orb-title">
       <!-- <h1>语言模型摄像交互</h1> -->
       <div class="glassy-button" id="scrollToMain">
