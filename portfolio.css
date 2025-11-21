@@ -1474,7 +1474,14 @@ body.mobile .audio-player {
 .phone-background-overlay {
   position: absolute;
   inset: 0;
+  /* Fallback for browsers that don't support image-set */
   background-image: url('phonecard_bg.png');
+  /* Modern browsers will use WebP if supported */
+  background-image: 
+    image-set(
+      url('phonecard_bg.webp') type('image/webp'),
+      url('phonecard_bg.png') type('image/png')
+    );
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -100,14 +100,74 @@
       <div class="project-content-container">
         <img src="Photo/LLM/LLM1.png" alt="LLM 1" class="project-image fade-in-on-scroll">
         <img src="Photo/LLM/LLM2.png" alt="LLM 2" class="project-image fade-in-on-scroll">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <img src="Photo/LLM/LLM3.png" alt="LLM 3" class="project-image fade-in-on-scroll small-image">
-        
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <img src="Photo/LLM/LLM4.png" alt="LLM 4" class="project-image fade-in-on-scroll small-image">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <img src="Photo/LLM/LLM5.png" alt="LLM 5" class="project-image fade-in-on-scroll small-image">
-        <img src="Photo/LLM/LLM6.png" alt="LLM 6" class="project-image fade-in-on-scroll small-image">
+        <img src="Photo/LLM/LLM6.png" alt="LLM 6" class="project-image fade-in-on-scroll image-80">
         <img src="Photo/LLM/LLM7.png" alt="LLM 7" class="project-image fade-in-on-scroll small-image">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <img src="Photo/LLM/LLM8.png" alt="LLM 8" class="project-image fade-in-on-scroll small-image">
         <img src="Photo/LLM/LLM9.png" alt="LLM 9" class="project-image fade-in-on-scroll small-image">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </div>
+      </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+      <div class="gallery-container">
+        <div class="gallery-grid">
+          <div class="gallery-item fade-in-on-scroll">
+            <img src="Photo/LLM/01.jpg" alt="Gallery Image 01" class="gallery-image">
+          </div>
+          <div class="gallery-item fade-in-on-scroll">
+            <img src="Photo/LLM/02.jpg" alt="Gallery Image 02" class="gallery-image">
+          </div>
+          <div class="gallery-item fade-in-on-scroll">
+            <img src="Photo/LLM/03.jpg" alt="Gallery Image 03" class="gallery-image">
+          </div>
+          <div class="gallery-item fade-in-on-scroll">
+            <img src="Photo/LLM/04.jpg" alt="Gallery Image 04" class="gallery-image">
+          </div>
+          <div class="gallery-item fade-in-on-scroll">
+            <img src="Photo/LLM/05.jpg" alt="Gallery Image 05" class="gallery-image">
+          </div>
+          <div class="gallery-item fade-in-on-scroll">
+            <img src="Photo/LLM/06.jpg" alt="Gallery Image 06" class="gallery-image">
+          </div>
+        </div>
       </div>
     </section>
 
@@ -460,6 +520,11 @@ body {
   margin: 0 auto 30px auto;
 }
 
+.image-80 {
+  width: 80% !important;
+  margin: 0 auto 30px auto;
+}
+
 .fade-in-on-scroll {
   opacity: 0;
   transform: translateY(40px);
@@ -469,6 +534,55 @@ body {
 .fade-in-on-scroll.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Gallery Section Styles */
+.gallery-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 6rem 1rem;
+}
+
+.gallery-container {
+  width: 100%;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 100%;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Responsive Gallery Layout */
+@media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-section {
+    padding: 4rem 1rem;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 </style>
 
