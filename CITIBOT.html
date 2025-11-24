@@ -48,10 +48,7 @@
   <!-- Landing Container -->
   <div class="landing-container" id="landingContainer">
     <!-- Hidden preload image for faster loading -->
-    <picture>
-      <source srcset="Photo/CITIBOT/CITIBOT1.webp" type="image/webp">
-      <img src="Photo/CITIBOT/CITIBOT1.png" alt="" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; z-index: -1;" loading="eager" fetchpriority="high">
-    </picture>
+    <img src="Photo/CITIBOT/CITIBOT1.webp" alt="" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; z-index: -1;" loading="eager" fetchpriority="high">
     <div class="loading-overlay" id="loadingOverlay">
       <div class="scroll-indicator">
         <div class="scroll-dot"></div>
@@ -105,51 +102,17 @@
     <!-- Content Section (for images) -->
     <section class="project-content-section">
       <div class="project-content-container">
-        <!-- <img src="Photo/CITIBOT/CITIBOT1.png" alt="CITIBOT 1" class="project-image fade-in-on-scroll"> -->
-        <picture>
-          <source srcset="Photo/CITIBOT/CITIBOT2.webp" type="image/webp">
-          <img src="Photo/CITIBOT/CITIBOT2.png" alt="CITIBOT 2" class="project-image fade-in-on-scroll">
-        </picture>
-        <picture>
-          <source srcset="Photo/CITIBOT/CITIBOT3.webp" type="image/webp">
-          <img src="Photo/CITIBOT/CITIBOT3.png" alt="CITIBOT 3" class="project-image fade-in-on-scroll">
-        </picture>
-        <picture>
-          <source srcset="Photo/CITIBOT/CITIBOT4.webp" type="image/webp">
-          <img src="Photo/CITIBOT/CITIBOT4.png" alt="CITIBOT 4" class="project-image fade-in-on-scroll">
-        </picture>
-        <picture>
-          <source srcset="Photo/CITIBOT/CITIBOT5.webp" type="image/webp">
-          <img src="Photo/CITIBOT/CITIBOT5.png" alt="CITIBOT 5" class="project-image fade-in-on-scroll">
-        </picture>
-        <picture>
-          <source srcset="Photo/CITIBOT/CITIBOT6.webp" type="image/webp">
-          <img src="Photo/CITIBOT/CITIBOT6.png" alt="CITIBOT 6" class="project-image fade-in-on-scroll">
-        </picture>
-        <picture>
-          <source srcset="Photo/CITIBOT/CITIBOT7.webp" type="image/webp">
-          <img src="Photo/CITIBOT/CITIBOT7.png" alt="CITIBOT 7" class="project-image fade-in-on-scroll">
-        </picture>
-        <picture>
-          <source srcset="Photo/CITIBOT/CITIBOT8.webp" type="image/webp">
-          <img src="Photo/CITIBOT/CITIBOT8.png" alt="CITIBOT 8" class="project-image fade-in-on-scroll">
-        </picture>
-        <picture>
-          <source srcset="Photo/CITIBOT/CITIBOT9.webp" type="image/webp">
-          <img src="Photo/CITIBOT/CITIBOT9.png" alt="CITIBOT 9" class="project-image fade-in-on-scroll">
-        </picture>
-        <picture>
-          <source srcset="Photo/CITIBOT/CITIBOT12.webp" type="image/webp">
-          <img src="Photo/CITIBOT/CITIBOT12.png" alt="CITIBOT 12" class="project-image fade-in-on-scroll">
-        </picture>
-        <picture>
-          <source srcset="Photo/CITIBOT/CITIBOT10.webp" type="image/webp">
-          <img src="Photo/CITIBOT/CITIBOT10.png" alt="CITIBOT 10" class="project-image fade-in-on-scroll">
-        </picture>
-        <picture>
-          <source srcset="Photo/CITIBOT/CITIBOT11.webp" type="image/webp">
-          <img src="Photo/CITIBOT/CITIBOT11.png" alt="CITIBOT 11" class="project-image fade-in-on-scroll">
-        </picture>
+        <img src="Photo/CITIBOT/CITIBOT2.webp" alt="CITIBOT 2" class="project-image fade-in-on-scroll">
+        <img src="Photo/CITIBOT/CITIBOT3.webp" alt="CITIBOT 3" class="project-image fade-in-on-scroll">
+        <img src="Photo/CITIBOT/CITIBOT4.webp" alt="CITIBOT 4" class="project-image fade-in-on-scroll">
+        <img src="Photo/CITIBOT/CITIBOT5.webp" alt="CITIBOT 5" class="project-image fade-in-on-scroll">
+        <img src="Photo/CITIBOT/CITIBOT6.webp" alt="CITIBOT 6" class="project-image fade-in-on-scroll">
+        <img src="Photo/CITIBOT/CITIBOT7.webp" alt="CITIBOT 7" class="project-image fade-in-on-scroll">
+        <img src="Photo/CITIBOT/CITIBOT8.webp" alt="CITIBOT 8" class="project-image fade-in-on-scroll">
+        <img src="Photo/CITIBOT/CITIBOT9.webp" alt="CITIBOT 9" class="project-image fade-in-on-scroll">
+        <img src="Photo/CITIBOT/CITIBOT12.webp" alt="CITIBOT 12" class="project-image fade-in-on-scroll">
+        <img src="Photo/CITIBOT/CITIBOT10.webp" alt="CITIBOT 10" class="project-image fade-in-on-scroll">
+        <img src="Photo/CITIBOT/CITIBOT11.webp" alt="CITIBOT 11" class="project-image fade-in-on-scroll">
       </div>
     </section>
 
@@ -182,14 +145,7 @@ body {
 }
 
 .landing-container.loaded {
-    /* Fallback for browsers that don't support image-set */
-    background-image: url('Photo/CITIBOT/CITIBOT1.png');
-    /* Modern browsers will use WebP if supported */
-    background-image: 
-      image-set(
-        url('Photo/CITIBOT/CITIBOT1.webp') type('image/webp'),
-        url('Photo/CITIBOT/CITIBOT1.png') type('image/png')
-      );
+    background-image: url('Photo/CITIBOT/CITIBOT1.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -544,11 +500,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Image preloading for landing container
   const landingContainerElement = document.getElementById('landingContainer');
   const loadingOverlay = document.getElementById('loadingOverlay');
-  const mainImageUrlWebp = 'Photo/CITIBOT/CITIBOT1.webp';
-  const mainImageUrlPng = 'Photo/CITIBOT/CITIBOT1.png';
+  const mainImageUrl = 'Photo/CITIBOT/CITIBOT1.webp';
   
   // Check if image is already loaded (from hidden img tag or link preload)
-  const hiddenImg = landingContainerElement.querySelector('picture img') || landingContainerElement.querySelector('img');
+  const hiddenImg = landingContainerElement.querySelector('img');
   let imageLoaded = false;
   
   // Function to show loaded state
@@ -565,39 +520,27 @@ document.addEventListener('DOMContentLoaded', function() {
   if (hiddenImg && hiddenImg.complete && hiddenImg.naturalHeight !== 0) {
     showLoadedState();
   } else {
-    // Try to load WebP first, fallback to PNG if it fails
+    // Load WebP image
     const img = new Image();
     img.onload = showLoadedState;
     img.onerror = function() {
-      // If WebP fails, try PNG
-      const pngImg = new Image();
-      pngImg.onload = showLoadedState;
-      pngImg.onerror = function() {
-        // If both fail, hide loading overlay anyway after delay
-        setTimeout(() => {
-          loadingOverlay.classList.add('hidden');
-          landingContainerElement.classList.add('loaded');
-        }, 1000);
-      };
-      pngImg.src = mainImageUrlPng;
+      // If image fails to load, hide loading overlay anyway after delay
+      setTimeout(() => {
+        loadingOverlay.classList.add('hidden');
+        landingContainerElement.classList.add('loaded');
+      }, 1000);
     };
-    img.src = mainImageUrlWebp;
+    img.src = mainImageUrl;
   }
   
   // Also listen to hidden image load event as backup
   if (hiddenImg) {
     hiddenImg.addEventListener('load', showLoadedState);
     hiddenImg.addEventListener('error', function() {
-      // Try PNG as fallback
-      const pngImg = new Image();
-      pngImg.onload = showLoadedState;
-      pngImg.onerror = function() {
-        setTimeout(() => {
-          loadingOverlay.classList.add('hidden');
-          landingContainerElement.classList.add('loaded');
-        }, 1000);
-      };
-      pngImg.src = mainImageUrlPng;
+      setTimeout(() => {
+        loadingOverlay.classList.add('hidden');
+        landingContainerElement.classList.add('loaded');
+      }, 1000);
     });
   }
 
