@@ -92,8 +92,8 @@
           <span class="detail-value">UX研究 / 产品设计 / Python & AR 开发 / <br> 0到1全链路设计</span>
         </div>
         <div class="detail-item detail-item-orange">
-          <span class="detail-label">时间</span>
-          <span class="detail-value">2024.10</span>
+          <span class="detail-label">产品类型</span>
+          <span class="detail-value">导航系统</span>
         </div>
         <div class="detail-item detail-item-white">
           <span class="detail-label">技术</span>
@@ -103,20 +103,33 @@
     </section>
 
     <!-- Expandable Content Section -->
-      <section class="expandable-section">
-        <div class="expandable-container">
+      <!-- Section Header -->
+      <section class="section-header-section">
           <div class="section-header">
-            <video class="section-image" autoplay loop muted playsinline>
+          <video class="section-image video-top-rounded" autoplay loop muted playsinline>
               <source src="Photo/AR/DemoAR.mp4" type="video/mp4">
               您的浏览器不支持视频播放。
             </video>
-            <img src="Photo/AR/AR2.webp" alt="AR Design Process 1" class="section-image fade-in-on-scroll">
-            <img src="Photo/AR/AR1.webp" alt="AR Design Process 2" class="section-image fade-in-on-scroll">
-            <img src="Photo/AR/AR3.webp" alt="AR Design Process 3" class="section-image fade-in-on-scroll">
-            <img src="Photo/AR/Desktop - 3.png" alt="Desktop 3" class="section-image fade-in-on-scroll desktop-image">
-            <img src="Photo/AR/Desktop - 4.png" alt="Desktop 4" class="section-image fade-in-on-scroll desktop-image">
+          <img src="Photo/AR/AR2.webp" alt="AR Design Process 1" class="section-image fade-in-on-scroll">
+          <!-- <img src="Photo/AR/AR1.webp" alt="AR Design Process 2" class="section-image fade-in-on-scroll">
+          <img src="Photo/AR/AR3.webp" alt="AR Design Process 3" class="section-image fade-in-on-scroll"> -->
           </div>
-        
+      </section>
+    
+      <!-- Scroll Section -->
+      <section class="scroll-section" id="scrollSection">
+        <div class="scroll-section-content">
+          <img src="Photo/AR/Base-1.svg" alt="Base 1" class="scroll-section-image" id="baseImage">
+            <img src="Photo/AR/Base-3.svg" alt="Base 3" class="scroll-section-image" id="base3Image" style="display: block; opacity: 0; visibility: hidden;">
+            <img src="Photo/AR/Desktop-1.svg" alt="Desktop 1" class="scroll-section-image scroll-overlay-image" id="desktop1Image" style="display: block; opacity: 0; visibility: hidden;">
+            <img src="Photo/AR/Desktop-2.svg" alt="Desktop 2" class="scroll-section-image scroll-overlay-image" id="desktop2Image" style="display: block; opacity: 0; visibility: hidden;">
+            <img src="Photo/AR/Desktop-3.svg" alt="Desktop 3" class="scroll-section-image scroll-overlay-image" id="desktop3Image" style="display: block; opacity: 0; visibility: hidden;">
+        </div>
+      </section>
+      
+      <!-- Expandable Section -->
+      <section class="expandable-section">
+        <div class="expandable-container">
         <div class="expandable-list">
           <!-- Item 1 -->
           <div class="expandable-item" data-index="1">
@@ -176,11 +189,12 @@
             </div>
             <div class="expandable-content">
               <div class="content-wrapper">
+                <img src="Photo/AR/system1.svg" alt="System 1" class="content-image">
+                <img src="Photo/AR/system2.svg" alt="System 2" class="content-image">
                 <img src="Photo/AR/AR13.webp" alt="系统设计与技术实现 1" class="content-image">
                 <img src="Photo/AR/AR14.webp" alt="系统设计与技术实现 2" class="content-image content-image-65">
                 <img src="Photo/AR/AR15.webp" alt="系统设计与技术实现 3" class="content-image content-image-65">
                 <img src="Photo/AR/AR16.webp" alt="系统设计与技术实现 4" class="content-image content-image-65">
-                <img src="Photo/AR/AR17.webp" alt="系统设计与技术实现 5" class="content-image content-image-65">
               </div>
             </div>
           </div>
@@ -508,6 +522,7 @@ html {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 500;
+  margin-top: 0.5rem;
 }
 
 .detail-value {
@@ -612,6 +627,65 @@ html {
   margin-left: auto;
 }
 
+/* Scroll Section Styles */
+.scroll-section {
+  height: 400vh; /* 4 viewport heights (positions 0-4, but we only need 4 viewports) */
+  position: relative;
+  background: #fff;
+  overflow: visible;
+  z-index: 10;
+}
+
+.scroll-section-content {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+  overflow: visible;
+  visibility: visible;
+  opacity: 1;
+}
+
+.scroll-section-content img {
+  pointer-events: auto;
+}
+
+.scroll-section-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: auto;
+  object-fit: contain;
+  margin: 0;
+  z-index: 10;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-overlay-image {
+  z-index: 11;
+}
+
+#baseImage {
+  z-index: 10;
+}
+
+#base3Image {
+  z-index: 10;
+}
+
+#desktop1Image,
+#desktop2Image,
+#desktop3Image {
+  z-index: 11;
+}
+
 /* Expandable Section Styles */
 .expandable-section {
   background: #fff;
@@ -624,12 +698,21 @@ html {
   padding: 0 1rem;
 }
 
+.section-header-section {
+  background: #fff;
+  padding: 0;
+  width: 100%;
+}
+
 .section-header {
   display: flex;
   flex-direction: column;
   gap: 0;
-  margin-bottom: 4rem;
+  margin-bottom: 0;
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .section-image {
@@ -638,6 +721,13 @@ html {
   display: block;
   border-radius: 0;
   box-shadow: none;
+}
+
+.video-top-rounded {
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .desktop-image {
@@ -740,7 +830,7 @@ html {
 }
 
 .expandable-item.active .expandable-content {
-  max-height: 5000px;
+  max-height: 20000px; /* Increased to accommodate all images */
 }
 
 .expandable-item.active .expand-button {
@@ -904,11 +994,11 @@ document.addEventListener('DOMContentLoaded', function() {
     img.onload = showLoadedState;
     img.onerror = function() {
       // If image fails to load, hide loading overlay anyway after delay
-      setTimeout(() => {
-        loadingOverlay.classList.add('hidden');
-        landingContainerElement.classList.add('loaded');
-      }, 1000);
-    };
+        setTimeout(() => {
+          loadingOverlay.classList.add('hidden');
+          landingContainerElement.classList.add('loaded');
+        }, 1000);
+      };
     img.src = mainImageUrl;
   }
   
@@ -916,11 +1006,368 @@ document.addEventListener('DOMContentLoaded', function() {
   if (hiddenImg) {
     hiddenImg.addEventListener('load', showLoadedState);
     hiddenImg.addEventListener('error', function() {
-      setTimeout(() => {
-        loadingOverlay.classList.add('hidden');
-        landingContainerElement.classList.add('loaded');
-      }, 1000);
+        setTimeout(() => {
+          loadingOverlay.classList.add('hidden');
+          landingContainerElement.classList.add('loaded');
+        }, 1000);
     });
+  }
+
+  // Scroll section with locked scrolling
+  const scrollSection = document.getElementById('scrollSection');
+  if (scrollSection) {
+    let scrollPosition = 0;
+    const maxScrollSteps = 4; // Maximum scroll position is 4 (positions: 0, 1, 2, 3, 4)
+    const viewportHeight = window.innerHeight;
+    let isScrolling = false;
+    let lastScrollTime = 0;
+    const scrollCooldown = 50; // milliseconds - reduced for faster response
+    
+    const baseImage = document.getElementById('baseImage');
+    const base3Image = document.getElementById('base3Image');
+    const desktop1Image = document.getElementById('desktop1Image');
+    const desktop2Image = document.getElementById('desktop2Image');
+    const desktop3Image = document.getElementById('desktop3Image');
+    
+    // Debug: Check if all images are found
+    console.log('Images found:', {
+      baseImage: !!baseImage,
+      base3Image: !!base3Image,
+      desktop1Image: !!desktop1Image,
+      desktop2Image: !!desktop2Image,
+      desktop3Image: !!desktop3Image
+    });
+    
+    if (!base3Image) {
+      console.error('base3Image element not found! Check HTML structure.');
+    }
+    
+    // Function to update images based on scroll position
+    function updateScrollImages() {
+      // Clamp scrollPosition to valid range
+      if (scrollPosition < 0) scrollPosition = 0;
+      if (scrollPosition > maxScrollSteps) scrollPosition = maxScrollSteps;
+      
+      
+      if (scrollPosition === 0) {
+        // First viewport: only Base-1
+        if (baseImage) {
+          baseImage.style.setProperty('display', 'block', 'important');
+          baseImage.style.setProperty('visibility', 'visible', 'important');
+          baseImage.style.setProperty('opacity', '1', 'important');
+        }
+        if (base3Image) {
+          base3Image.style.setProperty('display', 'block', 'important');
+          base3Image.style.setProperty('opacity', '0', 'important');
+          base3Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+        if (desktop1Image) {
+          desktop1Image.style.setProperty('display', 'block', 'important');
+          desktop1Image.style.setProperty('opacity', '0', 'important');
+          desktop1Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+        if (desktop2Image) {
+          desktop2Image.style.setProperty('display', 'block', 'important');
+          desktop2Image.style.setProperty('opacity', '0', 'important');
+          desktop2Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+        if (desktop3Image) {
+          desktop3Image.style.setProperty('display', 'block', 'important');
+          desktop3Image.style.setProperty('opacity', '0', 'important');
+          desktop3Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+      } else if (scrollPosition === 1) {
+        // Second viewport: Base-1 + Desktop-1
+        if (baseImage) {
+          baseImage.style.setProperty('display', 'block', 'important');
+          baseImage.style.setProperty('visibility', 'visible', 'important');
+          baseImage.style.setProperty('opacity', '1', 'important');
+        }
+        if (base3Image) {
+          base3Image.style.setProperty('display', 'block', 'important');
+          base3Image.style.setProperty('opacity', '0', 'important');
+          base3Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+        if (desktop1Image) {
+          desktop1Image.style.setProperty('display', 'block', 'important');
+          desktop1Image.style.setProperty('opacity', '1', 'important');
+          desktop1Image.style.setProperty('visibility', 'visible', 'important');
+        }
+        if (desktop2Image) {
+          desktop2Image.style.setProperty('display', 'block', 'important');
+          desktop2Image.style.setProperty('opacity', '0', 'important');
+          desktop2Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+        if (desktop3Image) {
+          desktop3Image.style.setProperty('display', 'block', 'important');
+          desktop3Image.style.setProperty('opacity', '0', 'important');
+          desktop3Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+      } else if (scrollPosition === 2) {
+        // Third viewport: Base-1 + Desktop-2
+        if (baseImage) {
+          baseImage.style.setProperty('display', 'block', 'important');
+          baseImage.style.setProperty('visibility', 'visible', 'important');
+          baseImage.style.setProperty('opacity', '1', 'important');
+        }
+        if (base3Image) {
+          base3Image.style.setProperty('display', 'block', 'important');
+          base3Image.style.setProperty('opacity', '0', 'important');
+          base3Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+        if (desktop1Image) {
+          desktop1Image.style.setProperty('display', 'block', 'important');
+          desktop1Image.style.setProperty('opacity', '0', 'important');
+          desktop1Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+        if (desktop2Image) {
+          desktop2Image.style.setProperty('display', 'block', 'important');
+          desktop2Image.style.setProperty('opacity', '1', 'important');
+          desktop2Image.style.setProperty('visibility', 'visible', 'important');
+        }
+        if (desktop3Image) {
+          desktop3Image.style.setProperty('display', 'block', 'important');
+          desktop3Image.style.setProperty('opacity', '0', 'important');
+          desktop3Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+      } else if (scrollPosition === 3) {
+        // Fourth viewport: Base-3 only (all Desktop disappear)
+        if (baseImage) {
+          baseImage.style.setProperty('display', 'block', 'important');
+          baseImage.style.setProperty('opacity', '0', 'important');
+          baseImage.style.setProperty('visibility', 'hidden', 'important');
+        }
+        if (base3Image) {
+          base3Image.style.setProperty('display', 'block', 'important');
+          base3Image.style.setProperty('visibility', 'visible', 'important');
+          base3Image.style.setProperty('opacity', '1', 'important');
+          base3Image.style.setProperty('z-index', '10', 'important');
+          base3Image.style.setProperty('position', 'absolute', 'important');
+          base3Image.style.setProperty('top', '50%', 'important');
+          base3Image.style.setProperty('left', '50%', 'important');
+          base3Image.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+        }
+        if (desktop1Image) {
+          desktop1Image.style.setProperty('display', 'block', 'important');
+          desktop1Image.style.setProperty('opacity', '0', 'important');
+          desktop1Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+        if (desktop2Image) {
+          desktop2Image.style.setProperty('display', 'block', 'important');
+          desktop2Image.style.setProperty('opacity', '0', 'important');
+          desktop2Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+        if (desktop3Image) {
+          desktop3Image.style.setProperty('display', 'block', 'important');
+          desktop3Image.style.setProperty('opacity', '0', 'important');
+          desktop3Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+      } else if (scrollPosition === 4) {
+        // Fifth viewport: Base-3 + Desktop-3
+        if (baseImage) {
+          baseImage.style.setProperty('display', 'block', 'important');
+          baseImage.style.setProperty('opacity', '0', 'important');
+          baseImage.style.setProperty('visibility', 'hidden', 'important');
+        }
+        if (base3Image) {
+          base3Image.style.setProperty('display', 'block', 'important');
+          base3Image.style.setProperty('visibility', 'visible', 'important');
+          base3Image.style.setProperty('opacity', '1', 'important');
+          base3Image.style.setProperty('z-index', '10', 'important');
+          base3Image.style.setProperty('position', 'absolute', 'important');
+          base3Image.style.setProperty('top', '50%', 'important');
+          base3Image.style.setProperty('left', '50%', 'important');
+          base3Image.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+        }
+        if (desktop1Image) {
+          desktop1Image.style.setProperty('display', 'block', 'important');
+          desktop1Image.style.setProperty('opacity', '0', 'important');
+          desktop1Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+        if (desktop2Image) {
+          desktop2Image.style.setProperty('display', 'block', 'important');
+          desktop2Image.style.setProperty('opacity', '0', 'important');
+          desktop2Image.style.setProperty('visibility', 'hidden', 'important');
+        }
+        if (desktop3Image) {
+          desktop3Image.style.setProperty('display', 'block', 'important');
+          desktop3Image.style.setProperty('opacity', '1', 'important');
+          desktop3Image.style.setProperty('visibility', 'visible', 'important');
+          desktop3Image.style.setProperty('z-index', '11', 'important');
+          desktop3Image.style.setProperty('position', 'absolute', 'important');
+          desktop3Image.style.setProperty('top', '50%', 'important');
+          desktop3Image.style.setProperty('left', '50%', 'important');
+          desktop3Image.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+        }
+      } else {
+        // Fallback for any other position (should not happen)
+        console.warn('Unexpected scrollPosition:', scrollPosition);
+        // Hide all images as fallback
+        if (baseImage) baseImage.style.setProperty('display', 'none', 'important');
+        if (base3Image) base3Image.style.setProperty('display', 'none', 'important');
+        if (desktop1Image) desktop1Image.style.setProperty('display', 'none', 'important');
+        if (desktop2Image) desktop2Image.style.setProperty('display', 'none', 'important');
+        if (desktop3Image) desktop3Image.style.setProperty('display', 'none', 'important');
+      }
+    }
+    
+    // Initialize images
+    updateScrollImages();
+    
+    // Disable automatic scroll position checking to prevent conflicts
+    // We'll only update based on manual scroll control
+    let isManualScroll = false;
+
+    function handleScrollSection(e) {
+      const rect = scrollSection.getBoundingClientRect();
+      const isInSection = rect.top <= 0 && rect.bottom >= viewportHeight;
+      
+      if (!isInSection) return;
+
+      const currentTime = Date.now();
+      if (currentTime - lastScrollTime < scrollCooldown) {
+        e.preventDefault();
+        return;
+      }
+
+      if (isScrolling) {
+        e.preventDefault();
+        return;
+      }
+
+      const delta = e.deltaY || (e.detail ? -e.detail : 0) || (e.wheelDelta ? -e.wheelDelta : 0);
+      
+      if (delta > 0) {
+        if (scrollPosition < maxScrollSteps) {
+          // Still within scroll section, continue locked scrolling
+          isScrolling = true;
+          scrollPosition++;
+          lastScrollTime = currentTime;
+          
+          // Update images immediately for smoother transition
+          updateScrollImages();
+          
+          // Use requestAnimationFrame for smoother scrolling
+          requestAnimationFrame(() => {
+            window.scrollTo({
+              top: scrollSection.offsetTop + (scrollPosition * viewportHeight),
+              behavior: 'smooth'
+            });
+          });
+          
+          // Reduce timeout for faster response
+          setTimeout(() => {
+            isScrolling = false;
+            updateScrollImages();
+          }, 400);
+          
+          e.preventDefault();
+        } else {
+          // At max position (4), allow normal scrolling to next section immediately
+          // Don't prevent default, let browser handle it
+          return;
+        }
+      } else if (delta < 0 && scrollPosition > 0) {
+        // Scroll up
+        isScrolling = true;
+        isManualScroll = true;
+        scrollPosition--;
+        lastScrollTime = currentTime;
+        
+        // Update images immediately for smoother transition
+        updateScrollImages();
+        
+        // Use requestAnimationFrame for smoother scrolling
+        requestAnimationFrame(() => {
+          window.scrollTo({
+            top: scrollSection.offsetTop + (scrollPosition * viewportHeight),
+            behavior: 'smooth'
+          });
+        });
+        
+        // Reduce timeout for faster response
+        setTimeout(() => {
+          isScrolling = false;
+          isManualScroll = false;
+          updateScrollImages();
+        }, 400);
+        
+        e.preventDefault();
+      } else {
+        e.preventDefault();
+      }
+    }
+
+    // Listen for wheel events
+    window.addEventListener('wheel', handleScrollSection, { passive: false });
+    
+    // Also handle touch events for mobile
+    let touchStartY = 0;
+    let touchEndY = 0;
+    
+    scrollSection.addEventListener('touchstart', function(e) {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    
+    scrollSection.addEventListener('touchend', function(e) {
+      touchEndY = e.changedTouches[0].clientY;
+      const delta = touchStartY - touchEndY;
+      
+      if (Math.abs(delta) > 50) {
+        const rect = scrollSection.getBoundingClientRect();
+        const isInSection = rect.top <= 0 && rect.bottom >= viewportHeight;
+        
+        if (isInSection) {
+          if (delta > 0) {
+            // Clamp scrollPosition to maxScrollSteps
+            if (scrollPosition >= maxScrollSteps) {
+              scrollPosition = maxScrollSteps;
+            }
+            
+            if (scrollPosition < maxScrollSteps) {
+              isManualScroll = true;
+              scrollPosition++;
+              
+              // Update images immediately for smoother transition
+              updateScrollImages();
+              
+              requestAnimationFrame(() => {
+                window.scrollTo({
+                  top: scrollSection.offsetTop + (scrollPosition * viewportHeight),
+                  behavior: 'smooth'
+                });
+              });
+              
+              setTimeout(() => {
+                isManualScroll = false;
+                updateScrollImages();
+              }, 400);
+            } else {
+              // At max position (4), allow normal scrolling to next section immediately
+              return;
+            }
+          } else if (delta < 0 && scrollPosition > 0) {
+            isManualScroll = true;
+            scrollPosition--;
+            
+            // Update images immediately for smoother transition
+            updateScrollImages();
+            
+            requestAnimationFrame(() => {
+              window.scrollTo({
+                top: scrollSection.offsetTop + (scrollPosition * viewportHeight),
+                behavior: 'smooth'
+              });
+            });
+            
+            setTimeout(() => {
+              isManualScroll = false;
+              updateScrollImages();
+            }, 400);
+          }
+        }
+      }
+    }, { passive: true });
   }
 
   // Set detail-item heights to match image aspect ratios
