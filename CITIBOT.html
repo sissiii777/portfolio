@@ -525,11 +525,11 @@ document.addEventListener('DOMContentLoaded', function() {
     img.onload = showLoadedState;
     img.onerror = function() {
       // If image fails to load, hide loading overlay anyway after delay
-      setTimeout(() => {
-        loadingOverlay.classList.add('hidden');
-        landingContainerElement.classList.add('loaded');
-      }, 1000);
-    };
+        setTimeout(() => {
+          loadingOverlay.classList.add('hidden');
+          landingContainerElement.classList.add('loaded');
+        }, 1000);
+      };
     img.src = mainImageUrl;
   }
   
@@ -537,10 +537,10 @@ document.addEventListener('DOMContentLoaded', function() {
   if (hiddenImg) {
     hiddenImg.addEventListener('load', showLoadedState);
     hiddenImg.addEventListener('error', function() {
-      setTimeout(() => {
-        loadingOverlay.classList.add('hidden');
-        landingContainerElement.classList.add('loaded');
-      }, 1000);
+        setTimeout(() => {
+          loadingOverlay.classList.add('hidden');
+          landingContainerElement.classList.add('loaded');
+        }, 1000);
     });
   }
 

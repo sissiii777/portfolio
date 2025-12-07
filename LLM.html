@@ -48,7 +48,7 @@
   <!-- Landing Container -->
   <div class="landing-container" id="landingContainer">
     <!-- Hidden preload image for faster loading -->
-    <img src="Photo/LLM/main.png" alt="" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; z-index: -1;" loading="eager" fetchpriority="high">
+    <img src="Photo/project4.webp" alt="" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; z-index: -1;" loading="eager" fetchpriority="high">
     <div class="orb-title">
       <!-- <h1>语言模型摄像交互</h1> -->
       <div class="glassy-button" id="scrollToMain">
@@ -90,7 +90,7 @@
         </div>
         <div class="detail-item detail-item-white">
           <span class="detail-label">技术</span>
-          <span class="detail-value">LLM / 计算机视觉 / Python</span>
+          <span class="detail-value">LLM / API连接 / Python / p5.js / Arduino / 开发板 & 硬件集成 / 蓝牙 & 端口通讯 / 3D打印</span>
         </div>
       </div>
     </section>
@@ -98,8 +98,13 @@
     <!-- Content Section (for images) -->
     <section class="project-content-section">
       <div class="project-content-container">
-        <img src="Photo/LLM/LLM1.png" alt="LLM 1" class="project-image fade-in-on-scroll">
-        <img src="Photo/LLM/LLM2.png" alt="LLM 2" class="project-image fade-in-on-scroll">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <img src="Photo/LLM/LLM11.webp" alt="LLM 1" class="project-image fade-in-on-scroll">
         <br>
         <br>
         <br>
@@ -107,7 +112,9 @@
         <br>
         <br>
         <br>
-        <img src="Photo/LLM/LLM3.png" alt="LLM 3" class="project-image fade-in-on-scroll small-image">
+        <br>
+        <br>
+        <img src="Photo/LLM/LLM22.webp" alt="LLM 2" class="project-image fade-in-on-scroll">
         <br>
         <br>
         <br>
@@ -115,7 +122,25 @@
         <br>
         <br>
         <br>
-        <img src="Photo/LLM/LLM4.png" alt="LLM 4" class="project-image fade-in-on-scroll small-image">
+        <br>
+        <br>
+        <br>
+      </div>
+    </section>
+
+    <!-- LLM Overlay Section - Mouse hover and scroll controlled image overlay -->
+    <section class="llm-overlay-section" id="llmOverlaySection">
+      <div class="llm-overlay-container">
+        <img src="Photo/LLM/LLM31.webp" alt="LLM 31" class="llm-overlay-image" id="llmLayer31">
+        <img src="Photo/LLM/LLM32.webp" alt="LLM 32" class="llm-overlay-image" id="llmLayer32">
+        <img src="Photo/LLM/LLM33.webp" alt="LLM 33" class="llm-overlay-image" id="llmLayer33">
+      </div>
+    </section>
+
+    <!-- Content Section (for images) -->
+    <section class="project-content-section">
+      <div class="project-content-container">
+        <img src="Photo/LLM/LLM44.webp" alt="LLM 4" class="project-image fade-in-on-scroll ">
         <br>
         <br>
         <br>
@@ -123,9 +148,9 @@
         <br>
         <br>
         <br>
-        <img src="Photo/LLM/LLM5.png" alt="LLM 5" class="project-image fade-in-on-scroll small-image">
-        <img src="Photo/LLM/LLM6.png" alt="LLM 6" class="project-image fade-in-on-scroll image-80">
-        <img src="Photo/LLM/LLM7.png" alt="LLM 7" class="project-image fade-in-on-scroll small-image">
+        <img src="Photo/LLM/LLM55.webp" alt="LLM 5" class="project-image fade-in-on-scroll ">
+        <img src="Photo/LLM/LLM66.webp" alt="LLM 6" class="project-image fade-in-on-scroll ">
+        <img src="Photo/LLM/LLM77.webp" alt="LLM 7" class="project-image fade-in-on-scroll ">
         <br>
         <br>
         <br>
@@ -133,8 +158,19 @@
         <br>
         <br>
         <br>
-        <img src="Photo/LLM/LLM8.png" alt="LLM 8" class="project-image fade-in-on-scroll small-image">
-        <img src="Photo/LLM/LLM9.png" alt="LLM 9" class="project-image fade-in-on-scroll small-image">
+        <video id="demoVideo" class="project-video fade-in-on-scroll" muted loop playsinline>
+          <source src="Photo/LLM/demovideo.mp4" type="video/mp4">
+          您的浏览器不支持视频播放。
+        </video>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <img src="Photo/LLM/LLM88.webp" alt="LLM 8" class="project-image fade-in-on-scroll ">
+        <img src="Photo/LLM/LLM99.webp" alt="LLM 9" class="project-image fade-in-on-scroll ">
         <br>
         <br>
         <br>
@@ -515,6 +551,17 @@ body {
   padding: 0;
 }
 
+.project-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0 !important;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  object-fit: contain;
+}
+
 .small-image {
   width: 50% !important;
   margin: 0 auto 30px auto;
@@ -534,6 +581,61 @@ body {
 .fade-in-on-scroll.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* LLM Overlay Section Styles */
+.llm-overlay-section {
+  height: 400vh;
+  position: relative;
+  background: #EFEFEF;
+  overflow: visible;
+  z-index: 10;
+  margin-top: 3rem;
+}
+
+.llm-overlay-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: auto;
+  min-height: 100vh;
+}
+
+.llm-overlay-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1400px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  pointer-events: none;
+  display: block;
+}
+
+.llm-overlay-image.visible {
+  opacity: 1;
+}
+
+#llmLayer31 {
+  z-index: 10;
+}
+
+#llmLayer32 {
+  z-index: 11;
+}
+
+#llmLayer33 {
+  z-index: 12;
 }
 
 /* Gallery Section Styles */
@@ -709,6 +811,61 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initial check
   checkScrollFadeIn();
 
+  // Video auto-play on scroll
+  const demoVideo = document.getElementById('demoVideo');
+  let videoHasPlayed = false;
+  
+  function checkVideoPlay() {
+    if (!demoVideo || videoHasPlayed) return;
+    
+    const videoTop = demoVideo.getBoundingClientRect().top;
+    const videoBottom = demoVideo.getBoundingClientRect().bottom;
+    const windowHeight = window.innerHeight;
+    
+    // Check if video is in viewport (when 50% visible)
+    const videoHeight = demoVideo.getBoundingClientRect().height;
+    const visibleHeight = Math.min(videoBottom, windowHeight) - Math.max(videoTop, 0);
+    const visibleRatio = visibleHeight / videoHeight;
+    
+    if (visibleRatio > 0.5 && videoTop < windowHeight && videoBottom > 0) {
+      demoVideo.play().then(() => {
+        videoHasPlayed = true;
+      }).catch(error => {
+        console.log('Video autoplay failed:', error);
+      });
+    }
+  }
+  
+  // Pause video when out of viewport
+  function checkVideoPause() {
+    if (!demoVideo) return;
+    
+    const videoTop = demoVideo.getBoundingClientRect().top;
+    const videoBottom = demoVideo.getBoundingClientRect().bottom;
+    const windowHeight = window.innerHeight;
+    
+    // Pause if video is completely out of viewport
+    if (videoBottom < 0 || videoTop > windowHeight) {
+      demoVideo.pause();
+    } else if (videoTop < windowHeight && videoBottom > 0) {
+      // Resume if back in viewport
+      if (videoHasPlayed && demoVideo.paused) {
+        demoVideo.play().catch(error => {
+          console.log('Video resume failed:', error);
+        });
+      }
+    }
+  }
+  
+  // Run on scroll
+  window.addEventListener('scroll', () => {
+    checkVideoPlay();
+    checkVideoPause();
+  });
+  window.addEventListener('load', checkVideoPlay);
+  // Initial check
+  checkVideoPlay();
+
   // 滚动监听 - 动态背景效果
   const landingContainer = document.getElementById('landingContainer');
   let ticking = false;
@@ -754,6 +911,97 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 添加滚动监听器
   window.addEventListener('scroll', handleScroll, { passive: true });
+
+  // LLM Overlay Section - Scroll controlled image overlay
+  const llmOverlaySection = document.getElementById('llmOverlaySection');
+  if (llmOverlaySection) {
+    const llmLayer31 = document.getElementById('llmLayer31');
+    const llmLayer32 = document.getElementById('llmLayer32');
+    const llmLayer33 = document.getElementById('llmLayer33');
+    
+    // Ensure images are loaded
+    if (llmLayer31) {
+      llmLayer31.addEventListener('load', () => {
+        console.log('LLM31 loaded');
+      });
+      llmLayer31.addEventListener('error', () => {
+        console.error('LLM31 failed to load');
+      });
+    }
+    
+    function updateLLMOverlay() {
+      const rect = llmOverlaySection.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate progress through the section (0 to 1)
+      let progress = 0;
+      if (sectionTop < viewportHeight && sectionTop > -sectionHeight) {
+        // Progress from 0 to 1 as we scroll through the section
+        progress = Math.max(0, Math.min(1, (viewportHeight - sectionTop) / (sectionHeight * 0.8)));
+      }
+      
+      // Layer 31: Show from the start (0 to 0.33)
+      if (llmLayer31) {
+        const stage1 = progress > 0 ? Math.min(1, progress / 0.33) : 0;
+        llmLayer31.style.opacity = stage1;
+        if (stage1 > 0) {
+          llmLayer31.classList.add('visible');
+        } else {
+          llmLayer31.classList.remove('visible');
+        }
+      }
+      
+      // Layer 32: Show after first scroll stage (0.33 to 0.66)
+      if (llmLayer32) {
+        if (progress > 0.33) {
+          const stage2 = Math.min(1, (progress - 0.33) / 0.33);
+          llmLayer32.style.opacity = stage2;
+          if (stage2 > 0) {
+            llmLayer32.classList.add('visible');
+          } else {
+            llmLayer32.classList.remove('visible');
+          }
+        } else {
+          llmLayer32.style.opacity = 0;
+          llmLayer32.classList.remove('visible');
+        }
+      }
+      
+      // Layer 33: Show after second scroll stage (0.66 to 1.0)
+      if (llmLayer33) {
+        if (progress > 0.66) {
+          const stage3 = Math.min(1, (progress - 0.66) / 0.34);
+          llmLayer33.style.opacity = stage3;
+          if (stage3 > 0) {
+            llmLayer33.classList.add('visible');
+          } else {
+            llmLayer33.classList.remove('visible');
+          }
+        } else {
+          llmLayer33.style.opacity = 0;
+          llmLayer33.classList.remove('visible');
+        }
+      }
+    }
+    
+    // Update on scroll
+    let llmOverlayTicking = false;
+    function requestLLMOverlayTick() {
+      if (!llmOverlayTicking) {
+        requestAnimationFrame(() => {
+          updateLLMOverlay();
+          llmOverlayTicking = false;
+        });
+        llmOverlayTicking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', requestLLMOverlayTick, { passive: true });
+    // Initial update
+    updateLLMOverlay();
+  }
 
   // Glassy button click to scroll to main content
   const scrollToMainButton = document.getElementById('scrollToMain');

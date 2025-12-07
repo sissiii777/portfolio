@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FishOn - 郑泳诗 Sissi Zheng">
+    <title>FishOn - 郑泳诗 Sissi Zheng</title>
+    <!-- Preload landing orb main image for faster loading -->
+    <link rel="preload" as="image" href="Photo/FishOn/cover.png" fetchpriority="high">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+<!-- Custom Cursor -->
+<div class="custom-cursor"></div>
+
+<!-- Oslo-style Portfolio -->
+<div class="oslo-container">
+  <!-- Navigation -->
+  <nav class="oslo-nav">
+    <div class="nav-links">
+      <a href="index.html" class="nav-name">郑泳诗</a>
+      <div class="nav-item-with-dropdown">
+        <span class="nav-link nav-trigger"><span class="plus-icon">+</span>Works</span>
+        <div class="works-dropdown">
+          <a href="AR.html" class="dropdown-item">
+            <span class="dropdown-number">1</span>
+            <span class="dropdown-title">手势识别导航系统</span>
+          </a>
+          <a href="CITIBOT.html" class="dropdown-item">
+            <span class="dropdown-number">2</span>
+            <span class="dropdown-title">CITIBOT机器人语音交互</span>
+          </a>
+          <a href="spotlight.html" class="dropdown-item">
+            <span class="dropdown-number">3</span>
+            <span class="dropdown-title">OS系统-眼动捕捉系统</span>
+          </a>
+          <a href="LLM.html" class="dropdown-item">
+            <span class="dropdown-number">4</span>
+            <span class="dropdown-title">语言模型摄像交互</span>
+          </a>
+        </div>
+      </div>
+      <a href="AboutMe.html" class="nav-link">About Me</a>
+      <a href="Contact" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Landing Container -->
+  <div class="landing-container" id="landingContainer">
+    <!-- Hidden preload image for faster loading -->
+    <img src="Photo/FishOn/cover.png" alt="" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; z-index: -1;" loading="eager" fetchpriority="high" onerror="this.style.display='none';">
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="scroll-indicator">
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+      </div>
+    </div>
+    <div class="orb-title">
+      <div class="glassy-button" id="scrollToMain">
+        FishOn
+        <div class="scroll-indicator">
+          <div class="scroll-dot"></div>
+          <div class="scroll-dot"></div>
+          <div class="scroll-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="oslo-main">
+    <!-- Project Hero Section -->
+    <section class="project-hero-section">
+      <div class="project-header">
+        <div class="project-meta">
+          <span class="project-number">05</span>
+          <span class="project-category">一个为年轻用户设计的 AI 钓鱼向导</span>
+        </div>
+        <div class="project-title-row">
+          <h1 class="project-main-title">FishOn</h1>
+          <p class="project-description">
+            <!-- 项目描述 -->
+          </p>
+        </div>
+      </div>
+      
+      <div class="project-details">
+        <div class="detail-item detail-item-black">
+          <span class="detail-label">角色</span>
+          <span class="detail-value">体验设计师 产品设计师</span>
+        </div>
+        <div class="detail-item detail-item-orange">
+          <span class="detail-label">产品类型</span>
+          <span class="detail-value">APP产品+体验设计</span>
+        </div>
+        <div class="detail-item detail-item-white">
+          <span class="detail-label">技术</span>
+          <span class="detail-value">Figma、逻辑梳理、信息构架、用户竞品调研、系统设计、高低保真原型</span>
+        </div>
+      </div>
+      
+      <div class="fish-image-wrapper">
+        <img src="Photo/FishOn/fish1.png" alt="Fish 1" class="fish-image">
+      </div>
+    </section>
+
+    <!-- Scroll Overlay Section -->
+    <section class="fish-overlay-section" id="fishOverlaySection">
+      <div class="fish-overlay-container">
+        <img src="Photo/FishOn/3.png" alt="Layer 3" class="fish-overlay-image" id="fishLayer3">
+        <img src="Photo/FishOn/4.png" alt="Layer 4" class="fish-overlay-image" id="fishLayer4">
+        <img src="Photo/FishOn/5.png" alt="Layer 5" class="fish-overlay-image" id="fishLayer5">
+        <img src="Photo/FishOn/6.png" alt="Layer 6" class="fish-overlay-image" id="fishLayer6">
+      </div>
+    </section>
+
+    <div class="fish-image-wrapper">
+      <img src="Photo/FishOn/7.png" alt="Fish 7" class="fish-image">
+    </div>
+
+    <!-- Expandable Section -->
+    <section class="expandable-section">
+      <div class="expandable-container">
+        <div class="expandable-list">
+          <!-- Item 1 -->
+          <div class="expandable-item" data-index="1">
+            <div class="expandable-header">
+              <span class="item-number">[01]</span>
+              <h3 class="item-title">市场&用户调研</h3>
+              <button class="expand-button"></button>
+            </div>
+            <div class="expandable-content">
+              <div class="content-wrapper">
+                <img src="Photo/FishOn/8.png" alt="市场&用户调研 1" class="content-image">
+                <img src="Photo/FishOn/9.png" alt="市场&用户调研 2" class="content-image">
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="expandable-item" data-index="2">
+            <div class="expandable-header">
+              <span class="item-number">[02]</span>
+              <h3 class="item-title">信息构架</h3>
+              <button class="expand-button"></button>
+            </div>
+            <div class="expandable-content">
+              <div class="content-wrapper">
+                <img src="Photo/FishOn/16.png" alt="信息构架" class="content-image">
+                <img src="Photo/FishOn/12.png" alt="信息构架" class="content-image">
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="expandable-item" data-index="3">
+            <div class="expandable-header">
+              <span class="item-number">[03]</span>
+              <h3 class="item-title">技术逻辑拆解</h3>
+              <button class="expand-button"></button>
+            </div>
+            <div class="expandable-content">
+              <div class="content-wrapper">
+                <img src="Photo/FishOn/10.png" alt="技术逻辑拆解" class="content-image">
+                <img src="Photo/FishOn/17.png" alt="技术逻辑拆解" class="content-image">
+                <img src="Photo/FishOn/11.png" alt="技术逻辑拆解 2" class="content-image content-image-70">
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="expandable-item" data-index="4">
+            <div class="expandable-header">
+              <span class="item-number">[04]</span>
+              <h3 class="item-title">系统设计</h3>
+              <button class="expand-button"></button>
+            </div>
+            <div class="expandable-content">
+              <div class="content-wrapper">
+                <img src="Photo/FishOn/13.png" alt="系统设计" class="content-image">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- New Section with Image 14 -->
+    <section class="fish-image-section">
+      <div class="fish-image-wrapper">
+        <img src="Photo/FishOn/14.png" alt="Fish 14" class="fish-image">
+        <img src="Photo/FishOn/15.png" alt="Fish 15" class="fish-image" style="margin-top: 0;">
+      </div>
+    </section>
+
+    <!-- Figma Embed Section -->
+    <section class="figma-embed-section">
+      <div class="figma-embed-wrapper">
+        <iframe allowfullscreen="" height="450" src="https://embed.figma.com/design/ZXnBdjHR8dCgjsHgtUKlSw/Final-Prototype?node-id=0-1&amp;embed-host=share" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" data-gtm-yt-inspected-8="true"></iframe>
+      </div>
+    </section>
+
+    <!-- Reflection Section -->
+    <section class="expandable-section">
+      <div class="expandable-container">
+        <div class="expandable-list">
+          <!-- Item 5 -->
+          <div class="expandable-item" data-index="5">
+            <div class="expandable-header">
+              <span class="item-number">[05]</span>
+              <h3 class="item-title">个人反思</h3>
+              <button class="expand-button"></button>
+            </div>
+            <div class="expandable-content">
+              <div class="content-wrapper">
+                <div class="reflection-cards">
+                  <div class="reflection-card">
+                    <h4 class="reflection-title">复杂信息系统拆解成清晰构架</h4>
+                    <p class="reflection-text">钓鱼场景天然涉及多维度输入（环境、信息、行为、时间）。所有信息都在不断变化，且彼此关联。呈现 用户真正关心的，高效但可靠的决策链条。</p>
+                  </div>
+                  <div class="reflection-card">
+                    <h4 class="reflection-title">熟悉"行业限制与合规"的敏感度</h4>
+                    <p class="reflection-text">真正意识到一个产品在落地前必须考虑的数据合规性。采用 本地化推理 + 国产模型 来规避跨境风险。比如： Google Earth Engine 会分别替换为 国产遥感数据平台</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content will be added here -->
+  </main>
+</div>
+
+<style>
+/* Ensure navigation is above landing container */
+.oslo-nav {
+    z-index: 1000 !important;
+}
+
+.oslo-main {
+  position: relative;
+  z-index: 1;
+  margin-top: 100vh;
+}
+
+/* Landing Container Styles */
+.landing-container {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    width: calc(100% - 80px);
+    height: calc(100vh - 80px);
+    background: #000000;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 1s ease-out;
+    z-index: 999;
+    will-change: transform, opacity;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.landing-container.loaded {
+    background-image: url('Photo/FishOn/cover.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: opacity 0.5s ease-out;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.landing-container.scrolled {
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    width: calc(100% - 40px);
+    height: calc(100vh - 40px);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.landing-container.fade-out {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.99);
+    pointer-events: none;
+}
+
+.orb-title {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Project Hero Section Styles */
+.project-hero-section {
+  padding: 6rem 1rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.project-header {
+  margin-bottom: 4rem;
+}
+
+.project-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.project-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #1D174D;
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.project-category {
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.project-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+.project-main-title {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+  color: #000;
+  flex-shrink: 0;
+}
+
+.project-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  max-width: 600px;
+  text-align: right;
+  margin: 0;
+}
+
+.project-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.fish-image-wrapper {
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.fish-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Fish Overlay Section Styles */
+.fish-overlay-section {
+  height: 500vh;
+  position: relative;
+  background: #F6F6F6;
+  overflow: visible;
+  z-index: 10;
+  margin-top: 3rem;
+}
+
+.fish-overlay-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.fish-overlay-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1400px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.fish-overlay-image.visible {
+  opacity: 1;
+}
+
+#fishLayer3 {
+  z-index: 10;
+}
+
+#fishLayer4 {
+  z-index: 11;
+}
+
+#fishLayer5 {
+  z-index: 12;
+}
+
+#fishLayer6 {
+  z-index: 13;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: #F13100;
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.detail-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.detail-value {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 400;
+}
+
+.detail-item-black {
+  background: #1D174D !important;
+  border: none !important;
+  position: relative;
+  min-height: 0;
+}
+
+.detail-item-black .detail-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.detail-item-black .detail-value {
+  color: #fff;
+}
+
+.detail-item-orange {
+  background: #F5F5F5 !important;
+  position: relative;
+  min-height: 0;
+}
+
+.detail-item-orange .detail-label {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.detail-item-orange .detail-value {
+  color: #000 !important;
+}
+
+.detail-item-white {
+  background: #ffffff !important;
+  border: 1px solid #1D174D !important;
+  position: relative;
+  min-height: 0;
+}
+
+.detail-item-white .detail-label {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.detail-item-white .detail-value {
+  color: #000;
+}
+
+/* Expandable Section Styles */
+.expandable-section {
+  background: #fff;
+  padding: 6rem 0;
+}
+
+.expandable-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.expandable-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.expandable-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.expandable-item:last-child {
+  border-bottom: none;
+}
+
+.expandable-header {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.expandable-header:hover {
+  background: transparent;
+}
+
+.expandable-header:hover .item-title {
+  color: #1D174D;
+}
+
+.item-number {
+  font-size: 0.9rem;
+  color: #999;
+  font-weight: 400;
+  margin-right: 2rem;
+  min-width: 40px;
+}
+
+.item-title {
+  flex: 1;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.expand-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #000;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: relative;
+}
+
+.expand-button::before {
+  content: '+';
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.expand-button:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+.expandable-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+}
+
+.expandable-item.active .expandable-content {
+  max-height: 20000px;
+}
+
+.expandable-item.active .expand-button {
+  background: rgba(29, 23, 77, 0.1);
+  color: #1D174D;
+}
+
+.expandable-item.active .expand-button:hover {
+  background: rgba(29, 23, 77, 0.2) !important;
+}
+
+.expandable-item.active .expand-button::before {
+  content: '−';
+  transform: rotate(180deg);
+}
+
+.expandable-item.active .item-title {
+  color: #1D174D;
+}
+
+.content-wrapper {
+  padding: 2rem 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+.content-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+}
+
+.content-image:last-child {
+  margin-bottom: 0;
+}
+
+.content-image-65 {
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-image-70 {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Figma Embed Section */
+.figma-embed-section {
+  padding: 3rem 0;
+  background: #fff;
+}
+
+.figma-embed-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.figma-embed-wrapper iframe {
+  border-radius: 12px;
+  display: block;
+}
+
+/* Reflection Cards Styles */
+.reflection-cards {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.reflection-card {
+  flex: 1;
+  background: #f5f5f5;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.reflection-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #1D174D;
+  margin-bottom: 1rem;
+}
+
+.reflection-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #000;
+  margin: 0;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Custom Cursor
+  const cursor = document.querySelector('.custom-cursor');
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+
+  if (cursor) {
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.1;
+      cursorY += (mouseY - cursorY) * 0.1;
+      cursor.style.left = cursorX + 'px';
+      cursor.style.top = cursorY + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    const hoverElements = document.querySelectorAll('a, button, .expand-button, .expandable-header, .glassy-button');
+    hoverElements.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+  }
+
+  // Image preloading for landing container
+  const landingContainerElement = document.getElementById('landingContainer');
+  const loadingOverlay = document.getElementById('loadingOverlay');
+  const mainImageUrl = 'Photo/FishOn/cover.png';
+  
+  // Check if image is already loaded (from hidden img tag or link preload)
+  const hiddenImg = landingContainerElement.querySelector('img');
+  let imageLoaded = false;
+  
+  // Function to show loaded state
+  function showLoadedState() {
+    if (imageLoaded) return;
+    imageLoaded = true;
+    landingContainerElement.classList.add('loaded');
+    setTimeout(() => {
+      loadingOverlay.classList.add('hidden');
+    }, 300); // Small delay for smooth transition
+  }
+  
+  // Check if hidden image is already loaded
+  if (hiddenImg && hiddenImg.complete && hiddenImg.naturalHeight !== 0) {
+    showLoadedState();
+  } else {
+    // Load WebP image
+    const img = new Image();
+    img.onload = showLoadedState;
+    img.onerror = function() {
+      // If image fails to load, hide loading overlay anyway after delay
+        setTimeout(() => {
+          loadingOverlay.classList.add('hidden');
+          landingContainerElement.classList.add('loaded');
+        }, 1000);
+      };
+    img.src = mainImageUrl;
+  }
+  
+  // Also listen to hidden image load event as backup
+  if (hiddenImg) {
+    hiddenImg.addEventListener('load', showLoadedState);
+    hiddenImg.addEventListener('error', function() {
+        setTimeout(() => {
+          loadingOverlay.classList.add('hidden');
+          landingContainerElement.classList.add('loaded');
+        }, 1000);
+    });
+  }
+
+  // 滚动监听 - 动态背景效果
+  const landingContainer = document.getElementById('landingContainer');
+  let ticking = false;
+  let lastScrollY = 0;
+  const scrollThreshold = 5; // 滚动阈值，减少不必要的计算
+
+  function updateBackground() {
+    const scrollY = window.scrollY;
+    
+    // 如果滚动距离变化很小，跳过更新
+    if (Math.abs(scrollY - lastScrollY) < scrollThreshold) {
+      ticking = false;
+      return;
+    }
+    
+    lastScrollY = scrollY;
+    
+    const cardThreshold = 50; // 卡片开始出现的滚动阈值
+    const fadeThreshold = 200; // 开始淡出的滚动阈值
+    
+    if (scrollY > cardThreshold) {
+      landingContainer.classList.add('scrolled');
+    } else {
+      landingContainer.classList.remove('scrolled');
+    }
+    
+    // 淡出效果
+    if (scrollY > fadeThreshold) {
+      landingContainer.classList.add('fade-out');
+    } else {
+      landingContainer.classList.remove('fade-out');
+    }
+    
+    ticking = false;
+  }
+
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateBackground);
+      ticking = true;
+    }
+  }
+
+  function handleScroll() {
+    requestTick();
+  }
+
+  // 添加滚动监听器
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+  // Fish Overlay Section - Scroll controlled image overlay
+  const fishOverlaySection = document.getElementById('fishOverlaySection');
+  if (fishOverlaySection) {
+    const fishLayer3 = document.getElementById('fishLayer3');
+    const fishLayer4 = document.getElementById('fishLayer4');
+    const fishLayer5 = document.getElementById('fishLayer5');
+    const fishLayer6 = document.getElementById('fishLayer6');
+    
+    function updateFishOverlay() {
+      const rect = fishOverlaySection.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate progress through the section (0 to 1)
+      // Section starts when it enters viewport
+      let progress = 0;
+      if (sectionTop < viewportHeight && sectionTop > -sectionHeight) {
+        // Progress from 0 to 1 as we scroll through the section
+        progress = Math.max(0, Math.min(1, (viewportHeight - sectionTop) / (sectionHeight * 0.8)));
+      }
+      
+      // Divide progress into 4 stages for 4 images
+      // Each image appears in a quarter of the scroll
+      const stage1 = progress > 0.1 ? Math.min(1, (progress - 0.1) / 0.2) : 0; // 0.1 to 0.3
+      const stage2 = progress > 0.3 ? Math.min(1, (progress - 0.3) / 0.2) : 0; // 0.3 to 0.5
+      const stage3 = progress > 0.5 ? Math.min(1, (progress - 0.5) / 0.2) : 0; // 0.5 to 0.7
+      const stage4 = progress > 0.7 ? Math.min(1, (progress - 0.7) / 0.2) : 0; // 0.7 to 0.9
+      
+      // Update opacity for each layer
+      if (fishLayer3) {
+        fishLayer3.style.opacity = stage1;
+        if (stage1 > 0) fishLayer3.classList.add('visible');
+        else fishLayer3.classList.remove('visible');
+      }
+      
+      if (fishLayer4) {
+        fishLayer4.style.opacity = stage2;
+        if (stage2 > 0) fishLayer4.classList.add('visible');
+        else fishLayer4.classList.remove('visible');
+      }
+      
+      if (fishLayer5) {
+        fishLayer5.style.opacity = stage3;
+        if (stage3 > 0) fishLayer5.classList.add('visible');
+        else fishLayer5.classList.remove('visible');
+      }
+      
+      if (fishLayer6) {
+        fishLayer6.style.opacity = stage4;
+        if (stage4 > 0) fishLayer6.classList.add('visible');
+        else fishLayer6.classList.remove('visible');
+      }
+    }
+    
+    // Update on scroll
+    let fishOverlayTicking = false;
+    function requestFishOverlayTick() {
+      if (!fishOverlayTicking) {
+        requestAnimationFrame(() => {
+          updateFishOverlay();
+          fishOverlayTicking = false;
+        });
+        fishOverlayTicking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', requestFishOverlayTick, { passive: true });
+    // Initial update
+    updateFishOverlay();
+  }
+
+  // Glassy button click to scroll to main content
+  const scrollToMainButton = document.getElementById('scrollToMain');
+  if (scrollToMainButton) {
+    scrollToMainButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      const mainContent = document.querySelector('.oslo-main');
+      if (mainContent) {
+        // 添加平滑滚动样式
+        document.documentElement.style.scrollBehavior = 'smooth';
+        document.body.style.scrollBehavior = 'smooth';
+        
+        // 计算目标位置
+        const targetPosition = mainContent.offsetTop - 20; // 留20px间距
+        
+        // 平滑滚动到目标位置
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+        
+        // 滚动完成后恢复默认行为
+        setTimeout(() => {
+          document.documentElement.style.scrollBehavior = 'auto';
+          document.body.style.scrollBehavior = 'auto';
+        }, 1000);
+      }
+    });
+  }
+
+  // Expandable functionality
+  const expandableItems = document.querySelectorAll('.expandable-item');
+  
+  expandableItems.forEach(item => {
+    const header = item.querySelector('.expandable-header');
+    const button = item.querySelector('.expand-button');
+    
+    function toggleExpand() {
+      const isActive = item.classList.contains('active');
+      
+      // Close all other items
+      expandableItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+        }
+      });
+      
+      // Toggle current item
+      if (isActive) {
+        item.classList.remove('active');
+      } else {
+        item.classList.add('active');
+      }
+    }
+    
+    if (header) {
+      header.addEventListener('click', toggleExpand);
+    }
+    if (button) {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleExpand();
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>
+
