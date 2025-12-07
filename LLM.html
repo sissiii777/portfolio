@@ -137,10 +137,17 @@
       </div>
     </section>
 
+    <!-- LLM Overlay Section 2 - Mouse hover and scroll controlled image overlay -->
+    <section class="llm-overlay-section" id="llmOverlaySection2">
+      <div class="llm-overlay-container">
+        <img src="Photo/LLM/LLM41.webp" alt="LLM 41" class="llm-overlay-image" id="llmLayer41">
+        <img src="Photo/LLM/LLM42.webp" alt="LLM 42" class="llm-overlay-image" id="llmLayer42">
+      </div>
+    </section>
+
     <!-- Content Section (for images) -->
     <section class="project-content-section">
       <div class="project-content-container">
-        <img src="Photo/LLM/LLM44.webp" alt="LLM 4" class="project-image fade-in-on-scroll ">
         <br>
         <br>
         <br>
@@ -638,6 +645,14 @@ body {
   z-index: 12;
 }
 
+#llmLayer41 {
+  z-index: 10;
+}
+
+#llmLayer42 {
+  z-index: 11;
+}
+
 /* Gallery Section Styles */
 .gallery-section {
   max-width: 1400px;
@@ -1001,6 +1016,80 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', requestLLMOverlayTick, { passive: true });
     // Initial update
     updateLLMOverlay();
+  }
+
+  // LLM Overlay Section 2 - Scroll controlled image overlay for LLM41 and LLM42
+  const llmOverlaySection2 = document.getElementById('llmOverlaySection2');
+  if (llmOverlaySection2) {
+    const llmLayer41 = document.getElementById('llmLayer41');
+    const llmLayer42 = document.getElementById('llmLayer42');
+    
+    // Ensure images are loaded
+    if (llmLayer41) {
+      llmLayer41.addEventListener('load', () => {
+        console.log('LLM41 loaded');
+      });
+      llmLayer41.addEventListener('error', () => {
+        console.error('LLM41 failed to load');
+      });
+    }
+    
+    function updateLLMOverlay2() {
+      const rect = llmOverlaySection2.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate progress through the section (0 to 1)
+      let progress = 0;
+      if (sectionTop < viewportHeight && sectionTop > -sectionHeight) {
+        // Progress from 0 to 1 as we scroll through the section
+        progress = Math.max(0, Math.min(1, (viewportHeight - sectionTop) / (sectionHeight * 0.8)));
+      }
+      
+      // Layer 41: Show from the start (0 to 0.2)
+      if (llmLayer41) {
+        const stage1 = progress > 0 ? Math.min(1, progress / 0.2) : 0;
+        llmLayer41.style.opacity = stage1;
+        if (stage1 > 0) {
+          llmLayer41.classList.add('visible');
+        } else {
+          llmLayer41.classList.remove('visible');
+        }
+      }
+      
+      // Layer 42: Show after first scroll stage (0.2 to 1.0) - much faster appearance
+      if (llmLayer42) {
+        if (progress > 0.2) {
+          const stage2 = Math.min(1, (progress - 0.1) / 0.2);
+          llmLayer42.style.opacity = stage2;
+          if (stage2 > 0) {
+            llmLayer42.classList.add('visible');
+          } else {
+            llmLayer42.classList.remove('visible');
+          }
+        } else {
+          llmLayer42.style.opacity = 0;
+          llmLayer42.classList.remove('visible');
+        }
+      }
+    }
+    
+    // Update on scroll
+    let llmOverlayTicking2 = false;
+    function requestLLMOverlayTick2() {
+      if (!llmOverlayTicking2) {
+        requestAnimationFrame(() => {
+          updateLLMOverlay2();
+          llmOverlayTicking2 = false;
+        });
+        llmOverlayTicking2 = true;
+      }
+    }
+    
+    window.addEventListener('scroll', requestLLMOverlayTick2, { passive: true });
+    // Initial update
+    updateLLMOverlay2();
   }
 
   // Glassy button click to scroll to main content
