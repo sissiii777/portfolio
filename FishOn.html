@@ -22,26 +22,25 @@
       <div class="nav-item-with-dropdown">
         <span class="nav-link nav-trigger"><span class="plus-icon">+</span>Works</span>
         <div class="works-dropdown">
-          <a href="AR.html" class="dropdown-item">
+          <a href="Watchlist.html" class="dropdown-item">
             <span class="dropdown-number">1</span>
-            <span class="dropdown-title">手势识别导航系统</span>
+            <span class="dropdown-title">股票自选Watchlist系统</span>
           </a>
           <a href="CITIBOT.html" class="dropdown-item">
             <span class="dropdown-number">2</span>
             <span class="dropdown-title">CITIBOT机器人语音交互</span>
           </a>
-          <a href="spotlight.html" class="dropdown-item">
+          <a href="AR.html" class="dropdown-item">
             <span class="dropdown-number">3</span>
-            <span class="dropdown-title">OS系统-眼动捕捉系统</span>
+            <span class="dropdown-title">手势识别导航系统</span>
           </a>
-          <a href="LLM.html" class="dropdown-item">
+          <a href="spotlight.html" class="dropdown-item">
             <span class="dropdown-number">4</span>
-            <span class="dropdown-title">语言模型摄像交互</span>
+            <span class="dropdown-title">OS系统-眼动捕捉系统</span>
           </a>
         </div>
       </div>
       <a href="AboutMe.html" class="nav-link">About Me</a>
-      <a href="Contact" class="nav-link">Contact</a>
     </div>
   </nav>
 
@@ -729,6 +728,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      cursor.classList.add('active');
     });
 
     function animateCursor() {
@@ -945,38 +945,66 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Expandable functionality
+  // Expandable functionality：打开/关闭都不跳转，始终保持在当前视口
   const expandableItems = document.querySelectorAll('.expandable-item');
   
   expandableItems.forEach(item => {
     const header = item.querySelector('.expandable-header');
     const button = item.querySelector('.expand-button');
     
-    function toggleExpand() {
-      const isActive = item.classList.contains('active');
+    function toggleExpand(e) {
+      e.preventDefault();
+      if (e && e.stopPropagation) e.stopPropagation();
+      var scrollYBefore = window.scrollY;
+      var content = item.querySelector('.expandable-content');
       
-      // Close all other items
-      expandableItems.forEach(otherItem => {
+      if (document.activeElement && document.activeElement.blur) {
+        document.activeElement.blur();
+      }
+      
+      expandableItems.forEach(function(otherItem) {
         if (otherItem !== item) {
           otherItem.classList.remove('active');
         }
       });
       
-      // Toggle current item
-      if (isActive) {
+      if (item.classList.contains('active')) {
         item.classList.remove('active');
       } else {
         item.classList.add('active');
       }
+      
+      function restoreScroll() {
+        window.scrollTo(0, scrollYBefore);
+      }
+      requestAnimationFrame(function() {
+        restoreScroll();
+        requestAnimationFrame(restoreScroll);
+      });
+      if (content) {
+        content.addEventListener('transitionend', function onEnd() {
+          content.removeEventListener('transitionend', onEnd);
+          restoreScroll();
+        });
+      }
+      setTimeout(restoreScroll, 100);
+      setTimeout(restoreScroll, 350);
+      setTimeout(restoreScroll, 550);
     }
     
     if (header) {
-      header.addEventListener('click', toggleExpand);
+      header.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleExpand(e);
+      });
     }
     if (button) {
-      button.addEventListener('click', (e) => {
+      button.setAttribute('tabindex', '-1');
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
         e.stopPropagation();
-        toggleExpand();
+        toggleExpand(e);
       });
     }
   });

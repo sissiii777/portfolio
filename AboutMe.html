@@ -20,26 +20,25 @@
       <div class="nav-item-with-dropdown">
         <span class="nav-link nav-trigger"><span class="plus-icon">+</span>Works</span>
         <div class="works-dropdown">
-          <a href="AR.html" class="dropdown-item">
+          <a href="Watchlist.html" class="dropdown-item">
             <span class="dropdown-number">1</span>
-            <span class="dropdown-title">手势识别导航系统</span>
+            <span class="dropdown-title">股票自选Watchlist系统</span>
           </a>
           <a href="CITIBOT.html" class="dropdown-item">
             <span class="dropdown-number">2</span>
             <span class="dropdown-title">CITIBOT机器人语音交互</span>
           </a>
-          <a href="spotlight.html" class="dropdown-item">
+          <a href="AR.html" class="dropdown-item">
             <span class="dropdown-number">3</span>
-            <span class="dropdown-title">OS系统-眼动捕捉系统</span>
+            <span class="dropdown-title">手势识别导航系统</span>
           </a>
-          <a href="LLM.html" class="dropdown-item">
+          <a href="spotlight.html" class="dropdown-item">
             <span class="dropdown-number">4</span>
-            <span class="dropdown-title">语言模型摄像交互</span>
+            <span class="dropdown-title">OS系统-眼动捕捉系统</span>
           </a>
         </div>
       </div>
       <a href="AboutMe.html" class="nav-link">About Me</a>
-      <a href="Contact" class="nav-link">Contact</a>
     </div>
   </nav>
 
@@ -70,20 +69,20 @@
       </div>
        <div class="right-card detail-item detail-item-main">
          <div class="card-image">
-           <img src="Me1.jpg" alt="Me" class="profile-image">
+           <img src="Me1.webp" alt="Me" class="profile-image">
          </div>
          
          <!-- 叠加卡片1 -->
          <div class="right-card stacked-card-1">
            <div class="card-image">
-             <img src="Me2.jpg" alt="Me" class="profile-image">
+             <img src="Me2.webp" alt="Me" class="profile-image">
            </div>
          </div>
          
          <!-- 叠加卡片2 -->
          <div class="right-card stacked-card-2">
            <div class="card-image">
-             <img src="project4.png" alt="Project" class="profile-image">
+             <img src="none.webp" alt="Project" class="profile-image">
            </div>
          </div>
        </div>
@@ -124,16 +123,16 @@ html {
   transform: translate(-50%, -50%) scale(4);
 }
 
-/* Black background */
+/* 纯白背景 */
 body {
-  background: #000000 !important;
-  color: #fff;
+  background: #ffffff !important;
+  color: #000;
   margin: 0;
   padding: 0;
 }
 
 .oslo-container {
-  background: #000000 !important;
+  background: #ffffff !important;
   min-height: 100vh;
 }
 
@@ -188,13 +187,13 @@ body {
 .name-text {
   font-size: 3.6rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #000000;
   position: relative;
   z-index: 2;
   background: none;
   background-clip: initial;
   -webkit-background-clip: initial;
-  -webkit-text-fill-color: #ffffff;
+  -webkit-text-fill-color: #000000;
   animation: focusIn 2s ease-in-out forwards;
   filter: blur(8px);
   opacity: 0.3;
@@ -488,7 +487,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
   padding: 1rem 0;
@@ -525,38 +524,42 @@ body {
   z-index: 250;
 }
 
-/* Navigation text colors - override for AboutMe page */
-.nav-name {
-  color: #fff !important;
+/* Navigation text colors - 纯黑，覆盖 portfolio.css 的 mix-blend-mode 与 text-shadow */
+.oslo-nav .nav-name {
+  color: #000000 !important;
+  text-shadow: none !important;
+  mix-blend-mode: normal !important;
 }
 
-.nav-link {
-  color: #fff !important;
+.oslo-nav .nav-link {
+  color: #000000 !important;
+  text-shadow: none !important;
+  mix-blend-mode: normal !important;
 }
 
-.plus-icon {
-  color: #020dff !important;
+.oslo-nav .plus-icon {
+  color: #000000 !important;
 }
 
-.dropdown-number {
-  color: #fff !important;
+.oslo-nav .dropdown-number {
+  color: #000000 !important;
 }
 
-.dropdown-title {
-  color: #fff !important;
+.oslo-nav .dropdown-title {
+  color: #000000 !important;
 }
 
 /* Navigation hover colors */
 .nav-name:hover {
-  color: #020dff !important;
+  color: #000000 !important;
 }
 
 .nav-link:hover {
-  color: #020dff !important;
+  color: #000000 !important;
 }
 
 .dropdown-item:hover .dropdown-title {
-  color: #020dff !important;
+  color: #000000 !important;
 }
 
 .dropdown-item:hover {

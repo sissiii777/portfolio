@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FishOn - 郑泳诗 Sissi Zheng">
+    <title> 股票自选副驾 - 郑泳诗 Sissi Zheng</title>
+    <!-- Preload landing + overlay images 提前加载减少卡顿 -->
+    <link rel="preload" as="image" href="Photo/Watchlist/zhutu.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="Photo/Watchlist/2_1.webp">
+    <link rel="preload" as="image" href="Photo/Watchlist/2_2.webp">
+    <link rel="preload" as="image" href="Photo/Watchlist/3_1.webp">
+    <link rel="preload" as="image" href="Photo/Watchlist/3_2.webp">
+    <link rel="preload" as="image" href="Photo/Watchlist/4_1.webp">
+    <link rel="preload" as="image" href="Photo/Watchlist/4_2.webp">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+<!-- Custom Cursor -->
+<div class="custom-cursor"></div>
+
+<!-- Oslo-style Portfolio -->
+<div class="oslo-container">
+  <!-- Navigation -->
+  <nav class="oslo-nav">
+    <div class="nav-links">
+      <a href="index.html" class="nav-name">郑泳诗</a>
+      <div class="nav-item-with-dropdown">
+        <span class="nav-link nav-trigger"><span class="plus-icon">+</span>Works</span>
+        <div class="works-dropdown">
+          <a href="Watchlist.html" class="dropdown-item">
+            <span class="dropdown-number">1</span>
+            <span class="dropdown-title">股票自选Watchlist系统</span>
+          </a>
+          <a href="CITIBOT.html" class="dropdown-item">
+            <span class="dropdown-number">2</span>
+            <span class="dropdown-title">CITIBOT机器人语音交互</span>
+          </a>
+          <a href="AR.html" class="dropdown-item">
+            <span class="dropdown-number">3</span>
+            <span class="dropdown-title">手势识别导航系统</span>
+          </a>
+          <a href="spotlight.html" class="dropdown-item">
+            <span class="dropdown-number">4</span>
+            <span class="dropdown-title">OS系统-眼动捕捉系统</span>
+          </a>
+        </div>
+      </div>
+      <a href="AboutMe.html" class="nav-link">About Me</a>
+    </div>
+  </nav>
+
+  <!-- Landing Container -->
+  <div class="landing-container" id="landingContainer">
+    <!-- Hidden preload image for faster loading -->
+    <img src="Photo/Watchlist/zhutu.webp" alt="" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; z-index: -1;" loading="eager" fetchpriority="high" onerror="this.style.display='none';">
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="scroll-indicator">
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+      </div>
+    </div>
+    <div class="orb-title">
+      <div class="glassy-button" id="scrollToMain">
+        股票自选副驾 Watchlist Copilot
+        <div class="scroll-indicator">
+          <div class="scroll-dot"></div>
+          <div class="scroll-dot"></div>
+          <div class="scroll-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="oslo-main">
+    <!-- Project Hero Section -->
+    <section class="project-hero-section">
+      <div class="project-header">
+        <div class="project-meta">
+          <!-- <span class="project-number">05</span> -->
+          <!-- <span class="project-category">一个面向个人年轻投资者的标的列表升级：以AI辅助增强的投资信息管理与决策支持系统</span> -->
+        </div>
+        <div class="project-title-row">
+          <h1 class="project-main-title">股票自选副驾 Watchlist Copilot </h1>
+          <p class="project-description">
+            <!-- 项目描述 -->
+          </p>
+        </div>
+      </div>
+      
+      <div class="project-details">
+        <div class="detail-item detail-item-black">
+          <span class="detail-label">角色</span>
+          <span class="detail-value">AI产品策略 / 金融信息系统设计 / 复杂信息架构 / 交互体验设计 / 风险表达策略 / 用户测试</span>
+        </div>
+        <div class="detail-item detail-item-orange">
+          <span class="detail-label">产品类型</span>
+          <span class="detail-value">以AI辅助增强的投资信息管理与决策支持系统 + 用户体验优化</span>
+        </div>
+        <div class="detail-item detail-item-white">
+          <span class="detail-label">技术</span>
+          <span class="detail-value">Figma / Python / 数据可视化 / AI模型整合 / 产品原型开发</span>
+        </div>
+      </div>
+      
+      <div class="fish-image-wrapper">
+        <img src="Photo/Watchlist/1.webp" alt="1" class="fish-image">
+      </div>
+    </section>
+
+    <!-- Expandable Section -->
+    <section class="expandable-section">
+      <div class="expandable-container">
+        <div class="expandable-list">
+          <!-- Item 1 市场&用户调研（默认展开） -->
+          <div class="expandable-item active" data-index="1">
+            <div class="expandable-header">
+              <span class="item-number">[01]</span>
+              <h3 class="item-title">问题、市场与机会</h3>
+              <button class="expand-button"></button>
+            </div>
+            <div class="expandable-content">
+              <div class="content-wrapper">
+                <img src="Photo/Watchlist/5.webp" alt="市场&用户调研 5" class="content-image">
+                <img src="Photo/Watchlist/6.webp" alt="市场&用户调研 6" class="content-image" style="margin-top: 50px;">
+                <img src="Photo/Watchlist/7.webp" alt="市场&用户调研 7" class="content-image" style="margin-top: 50px;">
+                <img src="Photo/Watchlist/8.webp" alt="市场&用户调研 8" class="content-image" style="margin-top: 50px;">
+                <img src="Photo/Watchlist/9.webp" alt="市场&用户调研 9" class="content-image" style="margin-top: 50px;">
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 产品亮点（默认展开） -->
+          <div class="expandable-item active" data-index="2">
+            <div class="expandable-header">
+              <span class="item-number">[02]</span>
+              <h3 class="item-title">产品亮点</h3>
+              <button class="expand-button"></button>
+            </div>
+            <div class="expandable-content">
+              <div class="content-wrapper">
+                <section class="fish-overlay-section" data-overlay>
+                  <div class="fish-overlay-container">
+                    <img src="Photo/Watchlist/2_1.webp" alt="2-1" class="fish-overlay-image" decoding="async">
+                    <img src="Photo/Watchlist/2_2.webp" alt="2-2" class="fish-overlay-image" decoding="async">
+                  </div>
+                </section>
+                <img src="Photo/Watchlist/3.webp" alt="产品亮点 3" class="content-image" decoding="async">
+                <img src="Photo/Watchlist/4.webp" alt="产品亮点 4" class="content-image" decoding="async">
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 信息构架 -->
+          <div class="expandable-item" data-index="3">
+            <div class="expandable-header">
+              <span class="item-number">[03]</span>
+              <h3 class="item-title">信息构架</h3>
+              <button class="expand-button"></button>
+            </div>
+            <div class="expandable-content">
+              <div class="content-wrapper">
+                <img src="Photo/Watchlist/10.webp" alt="信息构架" class="content-image">
+                <img src="Photo/Watchlist/11.webp" alt="信息构架" class="content-image">
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4 用户旅程图 -->
+          <div class="expandable-item" data-index="4">
+            <div class="expandable-header">
+              <span class="item-number">[04]</span>
+              <h3 class="item-title">用户旅程图</h3>
+              <button class="expand-button"></button>
+            </div>
+            <div class="expandable-content">
+              <div class="content-wrapper">
+                <img src="Photo/Watchlist/12.webp" alt="用户旅程图" class="content-image" style="width: 80%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 5 技术逻辑拆解 -->
+          <div class="expandable-item" data-index="5">
+            <div class="expandable-header">
+              <span class="item-number">[05]</span>
+              <h3 class="item-title">技术拆解</h3>
+              <button class="expand-button"></button>
+            </div>
+            <div class="expandable-content">
+              <div class="content-wrapper">
+                <img src="Photo/FishOn/10.png" alt="技术逻辑拆解" class="content-image">
+                <img src="Photo/FishOn/17.png" alt="技术逻辑拆解" class="content-image">
+                <img src="Photo/FishOn/11.png" alt="技术逻辑拆解 2" class="content-image content-image-70">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="fish-image-section">
+      <div class="fish-image-wrapper">
+        <img src="Photo/Watchlist/lock.webp" alt="Lock" class="fish-image">
+      </div>
+    </section>
+
+    <!-- Reflection Section -->
+    <section class="expandable-section">
+      <div class="expandable-container">
+        <div class="expandable-list">
+          <!-- Item 6 个人反思（暂隐藏） -->
+          <div class="expandable-item section-hidden" data-index="6">
+            <div class="expandable-header">
+              <span class="item-number">[06]</span>
+              <h3 class="item-title">个人反思</h3>
+              <button class="expand-button"></button>
+            </div>
+            <div class="expandable-content">
+              <div class="content-wrapper">
+                <div class="reflection-cards">
+                  <div class="reflection-card">
+                    <h4 class="reflection-title">复杂信息系统拆解成清晰构架</h4>
+                    <p class="reflection-text">钓鱼场景天然涉及多维度输入（环境、信息、行为、时间）。所有信息都在不断变化，且彼此关联。呈现 用户真正关心的，高效但可靠的决策链条。</p>
+                  </div>
+                  <div class="reflection-card">
+                    <h4 class="reflection-title">熟悉"行业限制与合规"的敏感度</h4>
+                    <p class="reflection-text">真正意识到一个产品在落地前必须考虑的数据合规性。采用 本地化推理 + 国产模型 来规避跨境风险。比如： Google Earth Engine 会分别替换为 国产遥感数据平台</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content will be added here -->
+  </main>
+</div>
+
+<style>
+/* Ensure navigation is above landing container */
+.oslo-nav {
+    z-index: 1000 !important;
+}
+
+.oslo-main {
+  position: relative;
+  z-index: 1;
+  margin-top: 100vh;
+}
+
+/* Landing Container Styles */
+.landing-container {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    width: calc(100% - 80px);
+    height: calc(100vh - 80px);
+    background: #000000;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s ease-out;
+    z-index: 999;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.landing-container.loaded {
+    background-image: url('Photo/Watchlist/zhutu.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: opacity 0.5s ease-out;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.landing-container.scrolled {
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    width: calc(100% - 40px);
+    height: calc(100vh - 40px);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.landing-container.fade-out {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.99);
+    pointer-events: none;
+}
+
+.orb-title {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.glassy-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.15) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 30px;
+    position: relative;
+    gap: 4px;
+}
+
+.scroll-dot {
+    width: 4px;
+    height: 4px;
+    background: #FF9800;
+    border-radius: 50%;
+    animation: scrollDown 1.5s infinite ease-in-out;
+}
+
+.scroll-dot:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.scroll-dot:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.scroll-dot:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes scrollDown {
+    0% {
+        transform: translateY(-8px);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(8px);
+        opacity: 0;
+    }
+}
+
+/* Project Hero Section Styles */
+.project-hero-section {
+  padding: 6rem 1rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.project-header {
+  margin-bottom: 4rem;
+}
+
+.project-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.project-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #FF9800;
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.project-category {
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.project-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+.project-main-title {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+  color: #000;
+  flex-shrink: 0;
+}
+
+.project-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  max-width: 600px;
+  text-align: right;
+  margin: 0;
+}
+
+.project-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.fish-image-wrapper {
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.fish-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* 滑动显现区块：叠在一起，滚入视口时先出第一张再叠第二张，显现后常驻不消失 */
+.fish-overlay-section {
+  position: relative;
+  overflow: visible;
+  z-index: 10;
+  margin-top: 3rem;
+}
+
+.fish-overlay-container {
+  position: relative;
+  height: 100vh;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.fish-overlay-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1400px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.35s ease-out;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.fish-overlay-image.revealed {
+  opacity: 1;
+}
+
+.fish-overlay-container .fish-overlay-image:first-child {
+  z-index: 10;
+}
+
+.fish-overlay-container .fish-overlay-image:last-child {
+  z-index: 11;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: #FF3E38;
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.detail-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.detail-value {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 400;
+}
+
+.detail-item-black {
+  background: #FF9800 !important;
+  border: none !important;
+  position: relative;
+  min-height: 0;
+}
+
+.detail-item-black .detail-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.detail-item-black .detail-value {
+  color: #fff;
+}
+
+.detail-item-orange {
+  background: #F5F5F5 !important;
+  position: relative;
+  min-height: 0;
+}
+
+.detail-item-orange .detail-label {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.detail-item-orange .detail-value {
+  color: #000 !important;
+}
+
+.detail-item-white {
+  background: #ffffff !important;
+  border: 1px solid #FF9800 !important;
+  position: relative;
+  min-height: 0;
+}
+
+.detail-item-white .detail-label {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.detail-item-white .detail-value {
+  color: #000;
+}
+
+/* Expandable Section Styles */
+.expandable-section {
+  background: #fff;
+  padding: 6rem 0;
+}
+
+.expandable-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.expandable-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.expandable-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.expandable-item:last-child {
+  border-bottom: none;
+}
+
+.expandable-item.section-hidden {
+  display: none !important;
+}
+
+.expandable-header {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.expandable-header:hover {
+  background: transparent;
+}
+
+.expandable-header:hover .item-title {
+  color: #FF9800;
+}
+
+.item-number {
+  font-size: 0.9rem;
+  color: #999;
+  font-weight: 400;
+  margin-right: 2rem;
+  min-width: 40px;
+}
+
+.item-title {
+  flex: 1;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.expand-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #000;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: relative;
+}
+
+.expand-button::before {
+  content: '+';
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.expand-button:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+.expandable-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+}
+
+.expandable-item.active .expandable-content {
+  max-height: 20000px;
+}
+
+.expandable-item.active .expand-button {
+  background: rgba(255, 152, 0, 0.2);
+  color: #FF9800;
+}
+
+.expandable-item.active .expand-button:hover {
+  background: rgba(255, 152, 0, 0.3) !important;
+}
+
+.expandable-item.active .expand-button::before {
+  content: '−';
+  transform: rotate(180deg);
+}
+
+.expandable-item.active .item-title {
+  color: #FF9800;
+}
+
+.content-wrapper {
+  padding: 2rem 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+.content-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+}
+
+.content-image:last-child {
+  margin-bottom: 0;
+}
+
+.content-image-65 {
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-image-70 {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Figma Embed Section */
+.figma-embed-section {
+  padding: 3rem 0;
+  background: #fff;
+}
+
+.figma-embed-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.figma-embed-wrapper iframe {
+  border-radius: 12px;
+  display: block;
+}
+
+/* Reflection Cards Styles */
+.reflection-cards {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.reflection-card {
+  flex: 1;
+  background: #f5f5f5;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.reflection-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #FF9800;
+  margin-bottom: 1rem;
+}
+
+.reflection-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #000;
+  margin: 0;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Custom Cursor
+  const cursor = document.querySelector('.custom-cursor');
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+
+  if (cursor) {
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.classList.add('active');
+    });
+
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.1;
+      cursorY += (mouseY - cursorY) * 0.1;
+      cursor.style.left = cursorX + 'px';
+      cursor.style.top = cursorY + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    const hoverElements = document.querySelectorAll('a, button, .expand-button, .expandable-header, .glassy-button');
+    hoverElements.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+  }
+
+  // Image preloading for landing container
+  const landingContainerElement = document.getElementById('landingContainer');
+  const loadingOverlay = document.getElementById('loadingOverlay');
+  const mainImageUrl = 'Photo/Watchlist/zhutu.webp';
+  
+  // Check if image is already loaded (from hidden img tag or link preload)
+  const hiddenImg = landingContainerElement.querySelector('img');
+  let imageLoaded = false;
+  
+  // Function to show loaded state
+  function showLoadedState() {
+    if (imageLoaded) return;
+    imageLoaded = true;
+    landingContainerElement.classList.add('loaded');
+    setTimeout(() => {
+      loadingOverlay.classList.add('hidden');
+    }, 300); // Small delay for smooth transition
+  }
+  
+  // Check if hidden image is already loaded
+  if (hiddenImg && hiddenImg.complete && hiddenImg.naturalHeight !== 0) {
+    showLoadedState();
+  } else {
+    // Load WebP image
+    const img = new Image();
+    img.onload = showLoadedState;
+    img.onerror = function() {
+      // If image fails to load, hide loading overlay anyway after delay
+        setTimeout(() => {
+          loadingOverlay.classList.add('hidden');
+          landingContainerElement.classList.add('loaded');
+        }, 1000);
+      };
+    img.src = mainImageUrl;
+  }
+  
+  // Also listen to hidden image load event as backup
+  if (hiddenImg) {
+    hiddenImg.addEventListener('load', showLoadedState);
+    hiddenImg.addEventListener('error', function() {
+        setTimeout(() => {
+          loadingOverlay.classList.add('hidden');
+          landingContainerElement.classList.add('loaded');
+        }, 1000);
+    });
+  }
+
+  // 仅 Landing 用滚动监听，Overlay 用 Intersection Observer，出现后常驻不消失
+  const landingContainer = document.getElementById('landingContainer');
+  let ticking = false;
+  let lastScrollY = -1;
+  const scrollThreshold = 8;
+  const cardThreshold = 50;
+  const fadeThreshold = 200;
+
+  function onScrollTick() {
+    const scrollY = window.scrollY;
+    lastScrollY = scrollY;
+    if (scrollY > cardThreshold) landingContainer.classList.add('scrolled');
+    else landingContainer.classList.remove('scrolled');
+    if (scrollY > fadeThreshold) landingContainer.classList.add('fade-out');
+    else landingContainer.classList.remove('fade-out');
+    ticking = false;
+  }
+
+  function requestScrollTick() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(onScrollTick);
+  }
+
+  function handleScroll() {
+    if (Math.abs(window.scrollY - lastScrollY) < scrollThreshold && lastScrollY >= 0) return;
+    requestScrollTick();
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  requestScrollTick();
+
+  // 滑动显现：进入视口先出第一张、再叠第二张，显现后加 .revealed 常驻不消失（图片保留在加载出来的位置）
+  const overlaySections = document.querySelectorAll('[data-overlay]');
+  if (typeof IntersectionObserver !== 'undefined') {
+    overlaySections.forEach(section => {
+      const imgs = section.querySelectorAll('.fish-overlay-image');
+      if (imgs.length < 2) return;
+      const layer1 = imgs[0];
+      const layer2 = imgs[1];
+      let revealed1 = false;
+      let revealed2 = false;
+      const observer = new IntersectionObserver(function(entries) {
+        const e = entries[0];
+        if (!e.isIntersecting) return;
+        const ratio = e.intersectionRatio;
+        if (!revealed1 && ratio >= 0.15) {
+          revealed1 = true;
+          layer1.classList.add('revealed');
+        }
+        if (!revealed2 && ratio >= 0.4) {
+          revealed2 = true;
+          layer2.classList.add('revealed');
+        }
+        if (revealed1 && revealed2) observer.disconnect();
+      }, { root: null, rootMargin: '0px', threshold: [0, 0.15, 0.4, 1] });
+      observer.observe(section);
+    });
+  } else {
+    overlaySections.forEach(section => {
+      const imgs = section.querySelectorAll('.fish-overlay-image');
+      if (imgs.length >= 2) {
+        imgs[0].classList.add('revealed');
+        imgs[1].classList.add('revealed');
+      }
+    });
+  }
+
+  // Glassy button click to scroll to main content
+  const scrollToMainButton = document.getElementById('scrollToMain');
+  if (scrollToMainButton) {
+    scrollToMainButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      const mainContent = document.querySelector('.oslo-main');
+      if (mainContent) {
+        // 添加平滑滚动样式
+        document.documentElement.style.scrollBehavior = 'smooth';
+        document.body.style.scrollBehavior = 'smooth';
+        
+        // 计算目标位置
+        const targetPosition = mainContent.offsetTop - 20; // 留20px间距
+        
+        // 平滑滚动到目标位置
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+        
+        // 滚动完成后恢复默认行为
+        setTimeout(() => {
+          document.documentElement.style.scrollBehavior = 'auto';
+          document.body.style.scrollBehavior = 'auto';
+        }, 1000);
+      }
+    });
+  }
+
+  // Expandable functionality：打开/关闭都不跳转，始终保持在当前视口
+  const expandableItems = document.querySelectorAll('.expandable-item');
+  
+  expandableItems.forEach(item => {
+    const header = item.querySelector('.expandable-header');
+    const button = item.querySelector('.expand-button');
+    
+    function toggleExpand(e) {
+      e.preventDefault();
+      if (e && e.stopPropagation) e.stopPropagation();
+      var scrollYBefore = window.scrollY;
+      var content = item.querySelector('.expandable-content');
+      
+      // 移除焦点，避免浏览器因 focus 自动滚动到按钮
+      if (document.activeElement && document.activeElement.blur) {
+        document.activeElement.blur();
+      }
+      
+      // Close all other items
+      expandableItems.forEach(function(otherItem) {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+        }
+      });
+      
+      // Toggle current item
+      if (item.classList.contains('active')) {
+        item.classList.remove('active');
+      } else {
+        item.classList.add('active');
+      }
+      
+      function restoreScroll() {
+        window.scrollTo(0, scrollYBefore);
+      }
+      // 多次恢复滚动，覆盖过渡过程中布局变化导致的跳动
+      requestAnimationFrame(function() {
+        restoreScroll();
+        requestAnimationFrame(restoreScroll);
+      });
+      if (content) {
+        content.addEventListener('transitionend', function onEnd() {
+          content.removeEventListener('transitionend', onEnd);
+          restoreScroll();
+        });
+      }
+      setTimeout(restoreScroll, 100);
+      setTimeout(restoreScroll, 350);
+      setTimeout(restoreScroll, 550);
+    }
+    
+    if (header) {
+      header.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleExpand(e);
+      });
+    }
+    if (button) {
+      button.setAttribute('tabindex', '-1');
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleExpand(e);
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>
