@@ -962,12 +962,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.activeElement.blur();
       }
       
-      expandableItems.forEach(function(otherItem) {
-        if (otherItem !== item) {
-          otherItem.classList.remove('active');
-        }
-      });
-      
+      // 只切换当前栏，不影响其他栏
       if (item.classList.contains('active')) {
         item.classList.remove('active');
       } else {
