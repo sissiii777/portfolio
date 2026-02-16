@@ -6,26 +6,6 @@
     <meta name="description" content="郑泳诗 Sissi Zheng - Product & Experience Designer">
     <title>郑泳诗 Sissi Zheng - Portfolio</title>
     <link rel="stylesheet" href="./portfolio.css">
-    <style>
-      /* hero：intro 左侧，project cards 右侧单列，不改变 intro 与卡片尺寸 */
-      .hero-section {
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 4rem;
-      }
-      .hero-left {
-        flex-shrink: 0;
-        margin-top: 45vh;
-      }
-      .hero-section .hero-projects {
-        padding: 0;
-        flex-shrink: 0;
-      }
-      .hero-section .hero-projects .projects-grid {
-        margin: 0;
-      }
-    </style>
 </head>
 <body>
 <!-- Custom Cursor -->
@@ -64,18 +44,82 @@
 
   <!-- Main Content -->
   <main class="oslo-main">
-    <!-- Hero Section: intro 左侧，project cards 右侧单列 -->
+    <!-- Hero Section -->
     <section class="hero-section">
-      <div class="hero-left">
-        <p class="hero-intro">我擅长产品设计 + 开发，作品主要围绕<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="gradient-text">数据化设计 · AI驱动设计 · 软硬件交互系统</span> 等。</p>
-        <h1 class="hero-title" id="decrypted-text">Sissi's Works</h1>
-        <div class="hero-footer">
-          <p class="hero-subtitle"></p>
-          <p class="scroll-indicator"></p>
+      <p class="hero-intro">我擅长产品设计 + 开发，作品主要围绕<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="gradient-text">数据化设计 · AI驱动设计 · 软硬件交互系统</span> 等。</p>
+      <h1 class="hero-title" id="decrypted-text">Sissi's Works</h1>
+      <div class="hero-footer">
+        <p class="hero-subtitle"></p>
+        <p class="scroll-indicator"></p>
+      </div>
+      
+      <!-- Phone-shaped card -->
+      <div class="phone-card" data-tilt>
+        <div class="phone-spectra-noise"></div>
+        <div class="phone-card-inner">
+          <div class="phone-background-overlay"></div>
+          <div class="phone-notch"></div>
+          <div class="phone-inner-glow"></div>
+          <div class="phone-glare"></div>
+        </div>
+        <div class="phone-border-beam"></div>
+        <!-- Code Editor Animation (shown on hover) -->
+        <div class="code-editor-container">
+          <div class="code-editor">
+            <!-- Terminal Header -->
+            <div class="terminal-header">
+              <div class="terminal-title">
+                <svg class="terminal-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="4 17 10 11 4 5"></polyline>
+                  <line x1="12" y1="19" x2="20" y2="19"></line>
+                </svg>
+                <span>Terminal</span>
+              </div>
+            </div>
+            <!-- Code Line 1 -->
+            <div class="code-line"><span class="code-keyword">const</span><span class="code-variable"> 毕业于</span><span class="code-operator"> = </span><span class="code-string">"</span><span class="code-typing"></span><span class="code-cursor">|</span><span class="code-string">"</span><span class="code-punctuation">;</span></div>
+            <!-- Code Line 2 -->
+            <div class="code-line code-line-2"><span class="code-keyword">const</span><span class="code-variable"> 我有</span><span class="code-operator"> = </span><span class="code-bracket">[</span></div>
+            <div class="code-line code-line-2"><span class="code-indent">  </span><span class="code-string">"技术背景+设计能力"</span><span class="code-punctuation">,</span></div>
+            <div class="code-line code-line-2"><span class="code-indent">  </span><span class="code-string">"系统性思考"</span><span class="code-punctuation">,</span></div>
+            <div class="code-line code-line-2"><span class="code-indent">  </span><span class="code-string">"共情、洞悉"</span></div>
+            <div class="code-line code-line-2"><span class="code-bracket">]</span><span class="code-punctuation">;</span></div>
+          </div>
+        </div>
+        
+        <!-- Tech Bubbles (shown on hover) -->
+        <div class="tech-bubbles-container">
+          <!-- White Bubble -->
+          <div class="tech-bubble white-bubble">
+            <picture>
+              <source srcset="bubble1.webp" type="image/webp">
+              <img src="bubble1.png" alt="AI">
+            </picture>
+          </div>
+          
+          <!-- Black Bubble -->
+          <div class="tech-bubble black-bubble">
+            <picture>
+              <source srcset="bubble2.webp" type="image/webp">
+              <img src="bubble2.png" alt="Manufacturing">
+            </picture>
+          </div>
         </div>
       </div>
-      <div class="projects-section hero-projects">
-        <div class="projects-grid">
+    </section>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- Projects Grid -->
+    <section class="projects-section">
+      <div class="projects-grid">
         <!-- Project 1: Watchlist -->
         <div class="project-card">
           <a href="Watchlist.html" rel="history" class="project-link">
@@ -135,8 +179,7 @@
             <div class="project-title">Eye Tracking</div>
           </a>
         </div>
-      </div>
-      </div>
+  </div>
     </section>
 
     <!-- About Section -->
