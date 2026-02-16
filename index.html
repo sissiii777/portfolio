@@ -25,6 +25,40 @@
       .hero-section .hero-projects .projects-grid {
         margin: 0;
       }
+      /* 页面中间三点滚动提示，主色蓝 */
+      .hero-scroll-hint {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 1;
+      }
+      .hero-scroll-hint .scroll-indicator {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 30px;
+        gap: 4px;
+      }
+      .hero-scroll-hint .scroll-dot {
+        width: 4px;
+        height: 4px;
+        background: #020dff;
+        border-radius: 50%;
+        animation: heroScrollDown 1.5s infinite ease-in-out;
+      }
+      .hero-scroll-hint .scroll-dot:nth-child(1) { animation-delay: 0s; }
+      .hero-scroll-hint .scroll-dot:nth-child(2) { animation-delay: 0.3s; }
+      .hero-scroll-hint .scroll-dot:nth-child(3) { animation-delay: 0.6s; }
+      @keyframes heroScrollDown {
+        0% { transform: translateY(-8px); opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translateY(8px); opacity: 0; }
+      }
     </style>
 </head>
 <body>
@@ -66,6 +100,13 @@
   <main class="oslo-main">
     <!-- Hero Section: intro 左侧，project cards 右侧单列 -->
     <section class="hero-section">
+      <div class="hero-scroll-hint">
+        <div class="scroll-indicator">
+          <div class="scroll-dot"></div>
+          <div class="scroll-dot"></div>
+          <div class="scroll-dot"></div>
+        </div>
+      </div>
       <div class="hero-left">
         <p class="hero-intro">我擅长产品设计 + 开发，作品主要围绕<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="gradient-text">数据化设计 · AI驱动设计 · 软硬件交互系统</span> 等。</p>
         <h1 class="hero-title" id="decrypted-text">Sissi's Works</h1>
@@ -82,12 +123,12 @@
             <div class="project-border-beam"></div>
             <div class="project-image">
               <picture>
-                <source srcset="Photo/Watchlist/zhutu.webp" type="image/webp">
-                <img src="Photo/Watchlist/zhutu.webp" alt="股票自选副驾">
+                <source srcset="project1.webp" type="image/webp">
+                <img src="project1.webp" alt="股票自选副驾">
               </picture>
             </div>
             <div class="project-title-top">金融类AI辅助型产品</div>
-            <div class="project-title">Watchlist Copilot</div>
+            <div class="project-title">个股自选AI Copilot系统</div>
           </a>
         </div>
 
