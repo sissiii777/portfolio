@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="FishOn - 郑泳诗 Sissi Zheng">
     <title> 股票自选副驾 - 郑泳诗 Sissi Zheng</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <!-- Preload landing + overlay images 提前加载减少卡顿 -->
     <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/Photo/Watchlist/zhutu.webp" fetchpriority="high">
     <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/Photo/Watchlist/2_1.webp">
@@ -53,7 +55,7 @@
   <!-- Landing Container -->
   <div class="landing-container" id="landingContainer">
     <!-- Hidden preload image for faster loading -->
-    <img src="https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/Photo/Watchlist/zhutu.webp" alt="" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; z-index: -1;" loading="eager" fetchpriority="high" onerror="this.style.display='none';">
+    <img src="https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/Photo/Watchlist/zhutu.webp" alt="" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; z-index: -1;" loading="eager" fetchpriority="high" decoding="async" onerror="this.style.display='none';">
     <div class="loading-overlay" id="loadingOverlay">
       <div class="scroll-indicator">
         <div class="scroll-dot"></div>

@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="郑泳诗 Sissi Zheng - Product & Experience Designer">
     <title>郑泳诗 Sissi Zheng - Portfolio</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/project1.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/project2.webp">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/project3.webp">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/project4.webp">
     <link rel="stylesheet" href="./portfolio.css">
     <style>
       /* hero：intro 左侧，project cards 右侧单列，不改变 intro 与卡片尺寸 */
@@ -109,7 +115,7 @@
       </div>
       <div class="hero-left">
         <p class="hero-intro">我擅长产品设计 + 开发，作品主要围绕<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="gradient-text">数据化设计 · AI驱动设计 · 软硬件交互系统</span> 等。</p>
-        <h1 class="hero-title" id="decrypted-text">Sissi's Works</h1>
+        <h1 class="hero-title">Sissi's Works</h1>
         <div class="hero-footer">
           <p class="hero-subtitle"></p>
           <p class="scroll-indicator"></p>
@@ -139,7 +145,7 @@
             <div class="project-image">
               <picture>
                 <source srcset="https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/project2.webp" type="image/webp">
-                <img src="https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/project2.png" alt="">
+                <img src="https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/project2.png" alt="" fetchpriority="high" decoding="async">
               </picture>
             </div>
             <div class="project-title-top">AI语音交互</div>
@@ -256,69 +262,6 @@ document.addEventListener('DOMContentLoaded', function () {
       this.style.transition = 'opacity 0.3s ease';
     });
   });
-
-  // Decrypted text effect
-  function initDecryptedText() {
-    const textElement = document.getElementById('decrypted-text');
-    if (!textElement) return;
-    
-    const originalText = "Sissi's Works";
-    const chars = originalText.split('');
-    
-    // Wrap each character in a span
-    textElement.innerHTML = chars.map(char => 
-      `<span class="char">${char}</span>`
-    ).join('');
-    
-    const charElements = textElement.querySelectorAll('.char');
-    const scrambleChars = '!@#$%^&*()_+-=[]{}|;:,.<>?~`';
-    
-    function scrambleRandomChars() {
-      // Pick 2-4 random characters from the middle section
-      const start = Math.floor(chars.length * 0.2);
-      const end = Math.floor(chars.length * 0.8);
-      const numToScramble = Math.floor(Math.random() * 3) + 2; // 2-4 chars
-      
-      const indices = [];
-      while (indices.length < numToScramble) {
-        const index = Math.floor(Math.random() * (end - start)) + start;
-        if (!indices.includes(index)) {
-          indices.push(index);
-        }
-      }
-      
-      // Scramble the selected characters
-      indices.forEach(index => {
-        const charElement = charElements[index];
-        if (charElement && charElement.textContent !== ' ') {
-          charElement.classList.add('scrambling');
-          charElement.textContent = scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
-          
-          setTimeout(() => {
-            charElement.classList.remove('scrambling');
-            charElement.textContent = chars[index];
-          }, 60);
-        }
-      });
-    }
-    
-    // Start scrambling 4 times
-    let iterations = 0;
-    const maxIterations = 4;
-    
-    function runScrambleIteration() {
-      if (iterations < maxIterations) {
-        scrambleRandomChars();
-        iterations++;
-        setTimeout(runScrambleIteration, 300); // 300ms delay between iterations
-      }
-    }
-    
-    runScrambleIteration();
-  }
-  
-  // Initialize decrypted text effect
-  initDecryptedText();
 
   // Tilt effect and border beam for phone card
   const phoneCard = document.querySelector('.phone-card');
