@@ -513,8 +513,11 @@ html {
   flex-direction: column;
   gap: 0.5rem;
   background: #F13100;
-  padding: 1.5rem;
+  padding: 1rem 1.2rem;
   border-radius: 12px;
+  min-height: 128px;
+  height: 128px;
+  justify-content: flex-start;
 }
 
 .detail-label {
@@ -523,7 +526,7 @@ html {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 500;
-  margin-top: 0.5rem;
+  margin-top: 0;
 }
 
 .detail-value {
@@ -533,38 +536,46 @@ html {
 }
 
 .detail-item-black {
-  background: url('https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/Photo/AR/Container.webp') center center / 100% 100% no-repeat !important;
+  background: #121212 !important;
   border: none !important;
   position: relative;
   min-height: 0;
 }
 
 .detail-item-black .detail-label {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .detail-item-black .detail-value {
-  color: #000;
+  color: #fff;
 }
 
 .detail-item-orange {
-  background: url('https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/Photo/AR/Container1.webp') center center / 100% 100% no-repeat !important;
+  background: #F13100 !important;
   position: relative;
   min-height: 0;
 }
 
 .detail-item-orange .detail-label {
-  color: #000 !important;
+  color: rgba(255, 255, 255, 0.75) !important;
 }
 
 .detail-item-orange .detail-value {
-  color: #000 !important;
+  color: #fff !important;
 }
 
 .detail-item-white {
-  background: url('https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/Photo/AR/Container2.webp') center center / 100% 100% no-repeat !important;
+  background: #f5f5f5 !important;
   position: relative;
   min-height: 0;
+}
+
+.detail-item-white .detail-label {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.detail-item-white .detail-value {
+  color: #000;
 }
 
 .project-content-section {
@@ -1371,49 +1382,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { passive: true });
   }
 
-  // Set detail-item heights to match image aspect ratios
-  function setDetailItemHeight(item, imageUrl) {
-    const img = new Image();
-    img.onload = function() {
-      const aspectRatio = img.naturalHeight / img.naturalWidth;
-      const itemWidth = item.offsetWidth;
-      const calculatedHeight = itemWidth * aspectRatio;
-      item.style.height = calculatedHeight + 'px';
-    };
-    img.src = imageUrl;
-  }
-
-  // Apply height matching to all detail items
-  const detailItemBlack = document.querySelector('.detail-item-black');
-  const detailItemOrange = document.querySelector('.detail-item-orange');
-  const detailItemWhite = document.querySelector('.detail-item-white');
-
-  if (detailItemBlack) {
-    setDetailItemHeight(detailItemBlack, 'https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/Photo/AR/Container.webp');
-  }
-  if (detailItemOrange) {
-    setDetailItemHeight(detailItemOrange, 'https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/Photo/AR/Container1.webp');
-  }
-  if (detailItemWhite) {
-    setDetailItemHeight(detailItemWhite, 'https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/Photo/AR/Container2.webp');
-  }
-
-  // Recalculate on window resize
-  let resizeTimer;
-  window.addEventListener('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-      if (detailItemBlack) {
-        setDetailItemHeight(detailItemBlack, 'https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/Photo/AR/Container.webp');
-      }
-      if (detailItemOrange) {
-        setDetailItemHeight(detailItemOrange, 'https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/Photo/AR/Container1.webp');
-      }
-      if (detailItemWhite) {
-        setDetailItemHeight(detailItemWhite, 'https://cdn.jsdelivr.net/gh/sissiii777/portfolio@main/Photo/AR/Container2.webp');
-      }
-    }, 250);
-  });
+  // Keep hero detail cards at a compact fixed height via CSS.
 
   // Custom Cursor
   const cursor = document.querySelector('.custom-cursor');
